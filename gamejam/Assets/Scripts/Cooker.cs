@@ -45,10 +45,16 @@ public class Cooker : MonoBehaviour
     IEnumerator CookCorutine()
     {
         busy = true;
+
         current_ingredient.spriteChanger.ChangeToCookingSprite();
+        if(this.name != "Fryer")
+        {
+            cooker_SpriteChanger.TargetSprite(current_ingredient.idx);
+        }
         cooker_SpriteChanger.ChangeToCookingSprite();
         yield return new WaitForSeconds(time);
         current_ingredient.dragable = true;
+        
         current_ingredient.spriteChanger.ChangeToCookedSprite();
         current_ingredient.cooked = true;
     }

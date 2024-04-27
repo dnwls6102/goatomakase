@@ -99,13 +99,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43c5e5650a4bdbf4fbafda86b01fc956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
   spriteChanger: {fileID: 0}
   idx: 2
   dragable: 0
   cooked: 0
+  is_plate: 0
   in_board: 0
   is_generator: 0
+  can_fry: 1
+  state: 0
   pool: {fileID: 0}
+  pot_to_board: {fileID: 0}
+  mixer_to_board: {fileID: 0}
 --- !u!61 &3651248158128903101
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -149,7 +155,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 2.15}
+  m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
 --- !u!114 &4884122588178827673
 MonoBehaviour:
@@ -167,4 +173,7 @@ MonoBehaviour:
   can_put_idx: 
   defualt_sprite: {fileID: 21300000, guid: 3deea94751935fe499cbf5fdd00a2582, type: 3}
   cooking_sprite: {fileID: 21300000, guid: 3deea94751935fe499cbf5fdd00a2582, type: 3}
-  cooked_sprite: {fileID: 21300000, guid: 3deea94751935fe499cbf5fdd00a2582, type: 3}
+  cooked_sprite: {fileID: 21300000, guid: 384d3e2851a7ccb4f97ddb40b05c37ff, type: 3}
+  boil_fail: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  mixed_fail: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  spritelist: []

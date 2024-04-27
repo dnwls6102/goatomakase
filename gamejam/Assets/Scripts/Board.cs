@@ -61,6 +61,8 @@ public class Board : MonoBehaviour
             }
 
             ingredient.state = Ingredient_state.FAILD;
+
+
             return true;
         }
         //grass Ãß°¡

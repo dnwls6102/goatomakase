@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     //public int cuisine_num = 0;
     public bool _isOrdering = false;
     public Text orderText;
+    public bool _isCorrect = true;
     public Board Doma; //도마
     //public Board Fryer; //튀김기
     //public Board Naembi; //냄비
@@ -360,7 +361,8 @@ public class GameManager : MonoBehaviour
     };
     private bool secondDish;
     private bool thirdDish;
-    private int temp;
+    private int temp; //재료의 인덱스를 확인하는 변수
+    private int orderIndex; //주문 index를 저장하는 변수
 
     void Awake()
     {
@@ -402,16 +404,16 @@ public class GameManager : MonoBehaviour
         if (_isOrdering == false) //주문이 없는 경우 : 주문 받기
         {
 
-            temp = Random.Range(0, 5); //어떤 주문을 할지 난수 생성 (temp = Random.Range(0, 22))
-                                       // do
-                                       // { //cuisineArray의 인덱스가 될 난수를 먼저 생성시킨 후 true인지 false인지 조건 판단
-                                       //     temp = Random.Range(0, 5); //현재 구현하는 요리의 갯수 : 6개
-                                       // } while (repeatArray[temp] == true); //중복되어 생성된 경우 다시 난수 생성시키기
+            orderIndex = Random.Range(0, 5); //어떤 주문을 할지 난수 생성 (temp = Random.Range(0, 22))
+                                             // do
+                                             // { //cuisineArray의 인덱스가 될 난수를 먼저 생성시킨 후 true인지 false인지 조건 판단
+                                             //     temp = Random.Range(0, 5); //현재 구현하는 요리의 갯수 : 6개
+                                             // } while (repeatArray[temp] == true); //중복되어 생성된 경우 다시 난수 생성시키기
 
             //repeatArray[temp] = true; // 난수 index의 요리를 true로 설정
             //indexStack.Push(temp);
             _isOrdering = true;
-            orderText.text = orderArray[temp];
+            orderText.text = orderArray[orderIndex];
         }
 
         //요리하기 : 유저가 조리기구로 드래그한 재료들이 어떤 재료인지 파악 후 currentSituation변수의 플래그 변경하기
@@ -448,7 +450,11 @@ public class GameManager : MonoBehaviour
         // 요리한 재료들 합친 후 완성본 보여주기
 
         // 클리어 여부 판정
+        if (currentSituation._isGrassOne != answerArray[orderIndex]._isGrassOne)
+        {
+            if (answerArray[orderIndex]._isGrassOne == 0)
 
+        }
 
 
 
@@ -490,25 +496,25 @@ public class GameManager : MonoBehaviour
         switch (index)
         {
             case 1:
-                currentSituation._isGrassOne = true;
+                currentSituation._isGrassOne = 1;
                 break;
             case 2:
-                currentSituation._isGrassTwo = true;
+                currentSituation._isGrassTwo = 1;
                 break;
             case 3:
-                currentSituation._isGrassThree = true;
+                currentSituation._isGrassThree = 1;
                 break;
             case 4:
-                currentSituation._isSpiceOne = true;
+                currentSituation._isSpiceOne = 1;
                 break;
             case 5:
-                currentSituation._isSpiceTwo = true;
+                currentSituation._isSpiceTwo = 1;
                 break;
             case 6:
-                currentSituation._isSpiceThree = true;
+                currentSituation._isSpiceThree = 1;
                 break;
             case 7:
-                currentSituation._isSpiceFour = true;
+                currentSituation._isSpiceFour = 1;
                 break;
             default:
                 Debug.Log("재료 인덱싱 오류");

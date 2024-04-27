@@ -64,17 +64,69 @@ public class GameManager : MonoBehaviour
         _isGrassOne = 0, //강아지풀이 필수인지 아닌지
         _isGrassTwo = 0, //민들레가 필수인지 아닌지
         _isGrassThree = 0, //고추가 필수인지 아닌지
+        _isSpiceOne = -1, //간장이 필수인지 아닌지
+        _isSpiceTwo = -1, //된장이 필수인지 아닌지
+        _isSpiceThree = -1, //소금이 필수인지 아닌지
+        _isSpiceFour = -1, //고춧가루가 필수인지 아닌지
+        _isToolOne = -1, //냄비가 필수인지 아닌지
+        _isToolTwo = -1, //믹서기가 필수인지 아닌지
+        _isToolThree = -1, //튀김기가 필수인지 아닌지
+    };
+    private clearInfo Answer2 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
+    {
+        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
+        _isGrassTwo = 0, //민들레가 필수인지 아닌지
+        _isGrassThree = 1, //고추가 필수인지 아닌지
         _isSpiceOne = 0, //간장이 필수인지 아닌지
         _isSpiceTwo = 0, //된장이 필수인지 아닌지
         _isSpiceThree = 0, //소금이 필수인지 아닌지
+        _isSpiceFour = 1, //고춧가루가 필수인지 아닌지
+        _isToolOne = -1, //냄비가 필수인지 아닌지
+        _isToolTwo = -1, //믹서기가 필수인지 아닌지
+        _isToolThree = -1, //튀김기가 필수인지 아닌지
+    };
+    private clearInfo Answer3 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
+    {
+        _isGrassOne = 1, //강아지풀이 필수인지 아닌지
+        _isGrassTwo = 0, //민들레가 필수인지 아닌지
+        _isGrassThree = 0, //고추가 필수인지 아닌지
+        _isSpiceOne = 0, //간장이 필수인지 아닌지
+        _isSpiceTwo = 1, //된장이 필수인지 아닌지
+        _isSpiceThree = 0, //소금이 필수인지 아닌지
         _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
-        _isToolOne = 0, //냄비가 필수인지 아닌지
+        _isToolOne = 1, //냄비가 필수인지 아닌지
         _isToolTwo = 0, //믹서기가 필수인지 아닌지
         _isToolThree = 0, //튀김기가 필수인지 아닌지
     };
-    private clearInfo Answer1 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
+    private clearInfo Answer4 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
     {
-        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
+        _isGrassOne = 1, //강아지풀이 필수인지 아닌지
+        _isGrassTwo = 1, //민들레가 필수인지 아닌지
+        _isGrassThree = 1, //고추가 필수인지 아닌지
+        _isSpiceOne = 0, //간장이 필수인지 아닌지
+        _isSpiceTwo = 0, //된장이 필수인지 아닌지
+        _isSpiceThree = 0, //소금이 필수인지 아닌지
+        _isSpiceFour = 1, //고춧가루가 필수인지 아닌지
+        _isToolOne = 0, //냄비가 필수인지 아닌지
+        _isToolTwo = 1, //믹서기가 필수인지 아닌지
+        _isToolThree = 0, //튀김기가 필수인지 아닌지
+    };
+    private clearInfo Answer5 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
+    {
+        _isGrassOne = 1, //강아지풀이 필수인지 아닌지
+        _isGrassTwo = 0, //민들레가 필수인지 아닌지
+        _isGrassThree = 0, //고추가 필수인지 아닌지
+        _isSpiceOne = 1, //간장이 필수인지 아닌지
+        _isSpiceTwo = 0, //된장이 필수인지 아닌지
+        _isSpiceThree = 0, //소금이 필수인지 아닌지
+        _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
+        _isToolOne = 1, //냄비가 필수인지 아닌지
+        _isToolTwo = 0, //믹서기가 필수인지 아닌지
+        _isToolThree = 0, //튀김기가 필수인지 아닌지
+    };
+    private clearInfo Answer6 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
+    {
+        _isGrassOne = 1, //강아지풀이 필수인지 아닌지
         _isGrassTwo = 0, //민들레가 필수인지 아닌지
         _isGrassThree = 0, //고추가 필수인지 아닌지
         _isSpiceOne = 0, //간장이 필수인지 아닌지
@@ -85,10 +137,166 @@ public class GameManager : MonoBehaviour
         _isToolTwo = 0, //믹서기가 필수인지 아닌지
         _isToolThree = 0, //튀김기가 필수인지 아닌지
     };
-    private clearInfo Answer1 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
+    private clearInfo Answer7 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
+    {
+        _isGrassOne = 1, //강아지풀이 필수인지 아닌지
+        _isGrassTwo = 0, //민들레가 필수인지 아닌지
+        _isGrassThree = 0, //고추가 필수인지 아닌지
+        _isSpiceOne = 1, //간장이 필수인지 아닌지
+        _isSpiceTwo = 0, //된장이 필수인지 아닌지
+        _isSpiceThree = 0, //소금이 필수인지 아닌지
+        _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
+        _isToolOne = 0, //냄비가 필수인지 아닌지
+        _isToolTwo = 1, //믹서기가 필수인지 아닌지
+        _isToolThree = 0, //튀김기가 필수인지 아닌지
+    };
+    private clearInfo Answer8 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
     {
         _isGrassOne = 0, //강아지풀이 필수인지 아닌지
         _isGrassTwo = 0, //민들레가 필수인지 아닌지
+        _isGrassThree = 0, //고추가 필수인지 아닌지
+        _isSpiceOne = 0, //간장이 필수인지 아닌지
+        _isSpiceTwo = 1, //된장이 필수인지 아닌지
+        _isSpiceThree = 0, //소금이 필수인지 아닌지
+        _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
+        _isToolOne = 0, //냄비가 필수인지 아닌지
+        _isToolTwo = 0, //믹서기가 필수인지 아닌지
+        _isToolThree = 0, //튀김기가 필수인지 아닌지
+    };
+    private clearInfo Answer9 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
+    {
+        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
+        _isGrassTwo = 1, //민들레가 필수인지 아닌지
+        _isGrassThree = 0, //고추가 필수인지 아닌지
+        _isSpiceOne = -1, //간장이 필수인지 아닌지
+        _isSpiceTwo = -1, //된장이 필수인지 아닌지
+        _isSpiceThree = -1, //소금이 필수인지 아닌지
+        _isSpiceFour = -1, //고춧가루가 필수인지 아닌지
+        _isToolOne = 0, //냄비가 필수인지 아닌지
+        _isToolTwo = 0, //믹서기가 필수인지 아닌지
+        _isToolThree = 1, //튀김기가 필수인지 아닌지
+    };
+    private clearInfo Answer10 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
+    {
+        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
+        _isGrassTwo = 1, //민들레가 필수인지 아닌지
+        _isGrassThree = 0, //고추가 필수인지 아닌지
+        _isSpiceOne = 0, //간장이 필수인지 아닌지
+        _isSpiceTwo = 0, //된장이 필수인지 아닌지
+        _isSpiceThree = 1, //소금이 필수인지 아닌지
+        _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
+        _isToolOne = 0, //냄비가 필수인지 아닌지
+        _isToolTwo = 0, //믹서기가 필수인지 아닌지
+        _isToolThree = 0, //튀김기가 필수인지 아닌지
+    };
+    private clearInfo Answer11 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
+    {
+        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
+        _isGrassTwo = 0, //민들레가 필수인지 아닌지
+        _isGrassThree = 1, //고추가 필수인지 아닌지
+        _isSpiceOne = 0, //간장이 필수인지 아닌지
+        _isSpiceTwo = 0, //된장이 필수인지 아닌지
+        _isSpiceThree = 0, //소금이 필수인지 아닌지
+        _isSpiceFour = 1, //고춧가루가 필수인지 아닌지
+        _isToolOne = 0, //냄비가 필수인지 아닌지
+        _isToolTwo = 0, //믹서기가 필수인지 아닌지
+        _isToolThree = 0, //튀김기가 필수인지 아닌지
+    };
+    private clearInfo Answer12 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
+    {
+        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
+        _isGrassTwo = 1, //민들레가 필수인지 아닌지
+        _isGrassThree = 0, //고추가 필수인지 아닌지
+        _isSpiceOne = 0, //간장이 필수인지 아닌지
+        _isSpiceTwo = 0, //된장이 필수인지 아닌지
+        _isSpiceThree = 1, //소금이 필수인지 아닌지
+        _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
+        _isToolOne = 0, //냄비가 필수인지 아닌지
+        _isToolTwo = 0, //믹서기가 필수인지 아닌지
+        _isToolThree = 1, //튀김기가 필수인지 아닌지
+    };
+    private clearInfo Answer13 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
+    {
+        _isGrassOne = 1, //강아지풀이 필수인지 아닌지
+        _isGrassTwo = 0, //민들레가 필수인지 아닌지
+        _isGrassThree = 0, //고추가 필수인지 아닌지
+        _isSpiceOne = 0, //간장이 필수인지 아닌지
+        _isSpiceTwo = 0, //된장이 필수인지 아닌지
+        _isSpiceThree = 0, //소금이 필수인지 아닌지
+        _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
+        _isToolOne = 0, //냄비가 필수인지 아닌지
+        _isToolTwo = 1, //믹서기가 필수인지 아닌지
+        _isToolThree = 0, //튀김기가 필수인지 아닌지
+    };
+    private clearInfo Answer14 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
+    {
+        _isGrassOne = -1, //강아지풀이 필수인지 아닌지
+        _isGrassTwo = -1, //민들레가 필수인지 아닌지
+        _isGrassThree = -1, //고추가 필수인지 아닌지
+        _isSpiceOne = -1, //간장이 필수인지 아닌지
+        _isSpiceTwo = 1, //된장이 필수인지 아닌지
+        _isSpiceThree = -1, //소금이 필수인지 아닌지
+        _isSpiceFour = -1, //고춧가루가 필수인지 아닌지
+        _isToolOne = -1, //냄비가 필수인지 아닌지
+        _isToolTwo = -1, //믹서기가 필수인지 아닌지
+        _isToolThree = -1, //튀김기가 필수인지 아닌지
+    };
+    private clearInfo Answer15 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
+    {
+        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
+        _isGrassTwo = 1, //민들레가 필수인지 아닌지
+        _isGrassThree = 0, //고추가 필수인지 아닌지
+        _isSpiceOne = -1, //간장이 필수인지 아닌지
+        _isSpiceTwo = -1, //된장이 필수인지 아닌지
+        _isSpiceThree = -1, //소금이 필수인지 아닌지
+        _isSpiceFour = -1, //고춧가루가 필수인지 아닌지
+        _isToolOne = -1, //냄비가 필수인지 아닌지
+        _isToolTwo = -1, //믹서기가 필수인지 아닌지
+        _isToolThree = -1, //튀김기가 필수인지 아닌지
+    };
+    private clearInfo Answer16 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
+    {
+        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
+        _isGrassTwo = 0, //민들레가 필수인지 아닌지
+        _isGrassThree = 0, //고추가 필수인지 아닌지
+        _isSpiceOne = 0, //간장이 필수인지 아닌지
+        _isSpiceTwo = 0, //된장이 필수인지 아닌지
+        _isSpiceThree = 0, //소금이 필수인지 아닌지
+        _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
+        _isToolOne = -1, //냄비가 필수인지 아닌지
+        _isToolTwo = -1, //믹서기가 필수인지 아닌지
+        _isToolThree = -1, //튀김기가 필수인지 아닌지
+    };
+    private clearInfo Answer17 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
+    {
+        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
+        _isGrassTwo = 0, //민들레가 필수인지 아닌지
+        _isGrassThree = 0, //고추가 필수인지 아닌지
+        _isSpiceOne = 1, //간장이 필수인지 아닌지
+        _isSpiceTwo = 0, //된장이 필수인지 아닌지
+        _isSpiceThree = 0, //소금이 필수인지 아닌지
+        _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
+        _isToolOne = 1, //냄비가 필수인지 아닌지
+        _isToolTwo = 0, //믹서기가 필수인지 아닌지
+        _isToolThree = 0, //튀김기가 필수인지 아닌지
+    };
+    private clearInfo Answer18 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
+    {
+        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
+        _isGrassTwo = 0, //민들레가 필수인지 아닌지
+        _isGrassThree = 1, //고추가 필수인지 아닌지
+        _isSpiceOne = 0, //간장이 필수인지 아닌지
+        _isSpiceTwo = 0, //된장이 필수인지 아닌지
+        _isSpiceThree = 0, //소금이 필수인지 아닌지
+        _isSpiceFour = 1, //고춧가루가 필수인지 아닌지
+        _isToolOne = 0, //냄비가 필수인지 아닌지
+        _isToolTwo = 0, //믹서기가 필수인지 아닌지
+        _isToolThree = 0, //튀김기가 필수인지 아닌지
+    };
+    private clearInfo Answer19 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
+    {
+        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
+        _isGrassTwo = 1, //민들레가 필수인지 아닌지
         _isGrassThree = 0, //고추가 필수인지 아닌지
         _isSpiceOne = 0, //간장이 필수인지 아닌지
         _isSpiceTwo = 0, //된장이 필수인지 아닌지
@@ -98,10 +306,36 @@ public class GameManager : MonoBehaviour
         _isToolTwo = 0, //믹서기가 필수인지 아닌지
         _isToolThree = 0, //튀김기가 필수인지 아닌지
     };
-    private clearInfo Answer1 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
+    private clearInfo Answer20 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
+    {
+        _isGrassOne = 1, //강아지풀이 필수인지 아닌지
+        _isGrassTwo = 0, //민들레가 필수인지 아닌지
+        _isGrassThree = 0, //고추가 필수인지 아닌지
+        _isSpiceOne = 0, //간장이 필수인지 아닌지
+        _isSpiceTwo = 0, //된장이 필수인지 아닌지
+        _isSpiceThree = 0, //소금이 필수인지 아닌지
+        _isSpiceFour = 1, //고춧가루가 필수인지 아닌지
+        _isToolOne = 1, //냄비가 필수인지 아닌지
+        _isToolTwo = 0, //믹서기가 필수인지 아닌지
+        _isToolThree = 0, //튀김기가 필수인지 아닌지
+    };
+    private clearInfo Answer21 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
+    {
+        _isGrassOne = 1, //강아지풀이 필수인지 아닌지
+        _isGrassTwo = 0, //민들레가 필수인지 아닌지
+        _isGrassThree = 0, //고추가 필수인지 아닌지
+        _isSpiceOne = 0, //간장이 필수인지 아닌지
+        _isSpiceTwo = 0, //된장이 필수인지 아닌지
+        _isSpiceThree = 0, //소금이 필수인지 아닌지
+        _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
+        _isToolOne = 0, //냄비가 필수인지 아닌지
+        _isToolTwo = 0, //믹서기가 필수인지 아닌지
+        _isToolThree = 1, //튀김기가 필수인지 아닌지
+    };
+    private clearInfo Answer22 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
     {
         _isGrassOne = 0, //강아지풀이 필수인지 아닌지
-        _isGrassTwo = 0, //민들레가 필수인지 아닌지
+        _isGrassTwo = 1, //민들레가 필수인지 아닌지
         _isGrassThree = 0, //고추가 필수인지 아닌지
         _isSpiceOne = 0, //간장이 필수인지 아닌지
         _isSpiceTwo = 0, //된장이 필수인지 아닌지
@@ -111,241 +345,7 @@ public class GameManager : MonoBehaviour
         _isToolTwo = 0, //믹서기가 필수인지 아닌지
         _isToolThree = 0, //튀김기가 필수인지 아닌지
     };
-    private clearInfo Answer1 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
-    {
-        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
-        _isGrassTwo = 0, //민들레가 필수인지 아닌지
-        _isGrassThree = 0, //고추가 필수인지 아닌지
-        _isSpiceOne = 0, //간장이 필수인지 아닌지
-        _isSpiceTwo = 0, //된장이 필수인지 아닌지
-        _isSpiceThree = 0, //소금이 필수인지 아닌지
-        _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
-        _isToolOne = 0, //냄비가 필수인지 아닌지
-        _isToolTwo = 0, //믹서기가 필수인지 아닌지
-        _isToolThree = 0, //튀김기가 필수인지 아닌지
-    };
-    private clearInfo Answer1 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
-    {
-        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
-        _isGrassTwo = 0, //민들레가 필수인지 아닌지
-        _isGrassThree = 0, //고추가 필수인지 아닌지
-        _isSpiceOne = 0, //간장이 필수인지 아닌지
-        _isSpiceTwo = 0, //된장이 필수인지 아닌지
-        _isSpiceThree = 0, //소금이 필수인지 아닌지
-        _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
-        _isToolOne = 0, //냄비가 필수인지 아닌지
-        _isToolTwo = 0, //믹서기가 필수인지 아닌지
-        _isToolThree = 0, //튀김기가 필수인지 아닌지
-    };
-    private clearInfo Answer1 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
-    {
-        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
-        _isGrassTwo = 0, //민들레가 필수인지 아닌지
-        _isGrassThree = 0, //고추가 필수인지 아닌지
-        _isSpiceOne = 0, //간장이 필수인지 아닌지
-        _isSpiceTwo = 0, //된장이 필수인지 아닌지
-        _isSpiceThree = 0, //소금이 필수인지 아닌지
-        _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
-        _isToolOne = 0, //냄비가 필수인지 아닌지
-        _isToolTwo = 0, //믹서기가 필수인지 아닌지
-        _isToolThree = 0, //튀김기가 필수인지 아닌지
-    };
-    private clearInfo Answer1 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
-    {
-        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
-        _isGrassTwo = 0, //민들레가 필수인지 아닌지
-        _isGrassThree = 0, //고추가 필수인지 아닌지
-        _isSpiceOne = 0, //간장이 필수인지 아닌지
-        _isSpiceTwo = 0, //된장이 필수인지 아닌지
-        _isSpiceThree = 0, //소금이 필수인지 아닌지
-        _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
-        _isToolOne = 0, //냄비가 필수인지 아닌지
-        _isToolTwo = 0, //믹서기가 필수인지 아닌지
-        _isToolThree = 0, //튀김기가 필수인지 아닌지
-    };
-    private clearInfo Answer1 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
-    {
-        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
-        _isGrassTwo = 0, //민들레가 필수인지 아닌지
-        _isGrassThree = 0, //고추가 필수인지 아닌지
-        _isSpiceOne = 0, //간장이 필수인지 아닌지
-        _isSpiceTwo = 0, //된장이 필수인지 아닌지
-        _isSpiceThree = 0, //소금이 필수인지 아닌지
-        _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
-        _isToolOne = 0, //냄비가 필수인지 아닌지
-        _isToolTwo = 0, //믹서기가 필수인지 아닌지
-        _isToolThree = 0, //튀김기가 필수인지 아닌지
-    };
-    private clearInfo Answer1 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
-    {
-        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
-        _isGrassTwo = 0, //민들레가 필수인지 아닌지
-        _isGrassThree = 0, //고추가 필수인지 아닌지
-        _isSpiceOne = 0, //간장이 필수인지 아닌지
-        _isSpiceTwo = 0, //된장이 필수인지 아닌지
-        _isSpiceThree = 0, //소금이 필수인지 아닌지
-        _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
-        _isToolOne = 0, //냄비가 필수인지 아닌지
-        _isToolTwo = 0, //믹서기가 필수인지 아닌지
-        _isToolThree = 0, //튀김기가 필수인지 아닌지
-    };
-    private clearInfo Answer1 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
-    {
-        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
-        _isGrassTwo = 0, //민들레가 필수인지 아닌지
-        _isGrassThree = 0, //고추가 필수인지 아닌지
-        _isSpiceOne = 0, //간장이 필수인지 아닌지
-        _isSpiceTwo = 0, //된장이 필수인지 아닌지
-        _isSpiceThree = 0, //소금이 필수인지 아닌지
-        _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
-        _isToolOne = 0, //냄비가 필수인지 아닌지
-        _isToolTwo = 0, //믹서기가 필수인지 아닌지
-        _isToolThree = 0, //튀김기가 필수인지 아닌지
-    };
-    private clearInfo Answer1 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
-    {
-        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
-        _isGrassTwo = 0, //민들레가 필수인지 아닌지
-        _isGrassThree = 0, //고추가 필수인지 아닌지
-        _isSpiceOne = 0, //간장이 필수인지 아닌지
-        _isSpiceTwo = 0, //된장이 필수인지 아닌지
-        _isSpiceThree = 0, //소금이 필수인지 아닌지
-        _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
-        _isToolOne = 0, //냄비가 필수인지 아닌지
-        _isToolTwo = 0, //믹서기가 필수인지 아닌지
-        _isToolThree = 0, //튀김기가 필수인지 아닌지
-    };
-    private clearInfo Answer1 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
-    {
-        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
-        _isGrassTwo = 0, //민들레가 필수인지 아닌지
-        _isGrassThree = 0, //고추가 필수인지 아닌지
-        _isSpiceOne = 0, //간장이 필수인지 아닌지
-        _isSpiceTwo = 0, //된장이 필수인지 아닌지
-        _isSpiceThree = 0, //소금이 필수인지 아닌지
-        _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
-        _isToolOne = 0, //냄비가 필수인지 아닌지
-        _isToolTwo = 0, //믹서기가 필수인지 아닌지
-        _isToolThree = 0, //튀김기가 필수인지 아닌지
-    };
-    private clearInfo Answer1 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
-    {
-        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
-        _isGrassTwo = 0, //민들레가 필수인지 아닌지
-        _isGrassThree = 0, //고추가 필수인지 아닌지
-        _isSpiceOne = 0, //간장이 필수인지 아닌지
-        _isSpiceTwo = 0, //된장이 필수인지 아닌지
-        _isSpiceThree = 0, //소금이 필수인지 아닌지
-        _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
-        _isToolOne = 0, //냄비가 필수인지 아닌지
-        _isToolTwo = 0, //믹서기가 필수인지 아닌지
-        _isToolThree = 0, //튀김기가 필수인지 아닌지
-    };
-    private clearInfo Answer1 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
-    {
-        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
-        _isGrassTwo = 0, //민들레가 필수인지 아닌지
-        _isGrassThree = 0, //고추가 필수인지 아닌지
-        _isSpiceOne = 0, //간장이 필수인지 아닌지
-        _isSpiceTwo = 0, //된장이 필수인지 아닌지
-        _isSpiceThree = 0, //소금이 필수인지 아닌지
-        _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
-        _isToolOne = 0, //냄비가 필수인지 아닌지
-        _isToolTwo = 0, //믹서기가 필수인지 아닌지
-        _isToolThree = 0, //튀김기가 필수인지 아닌지
-    };
-    private clearInfo Answer1 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
-    {
-        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
-        _isGrassTwo = 0, //민들레가 필수인지 아닌지
-        _isGrassThree = 0, //고추가 필수인지 아닌지
-        _isSpiceOne = 0, //간장이 필수인지 아닌지
-        _isSpiceTwo = 0, //된장이 필수인지 아닌지
-        _isSpiceThree = 0, //소금이 필수인지 아닌지
-        _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
-        _isToolOne = 0, //냄비가 필수인지 아닌지
-        _isToolTwo = 0, //믹서기가 필수인지 아닌지
-        _isToolThree = 0, //튀김기가 필수인지 아닌지
-    };
-    private clearInfo Answer1 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
-    {
-        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
-        _isGrassTwo = 0, //민들레가 필수인지 아닌지
-        _isGrassThree = 0, //고추가 필수인지 아닌지
-        _isSpiceOne = 0, //간장이 필수인지 아닌지
-        _isSpiceTwo = 0, //된장이 필수인지 아닌지
-        _isSpiceThree = 0, //소금이 필수인지 아닌지
-        _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
-        _isToolOne = 0, //냄비가 필수인지 아닌지
-        _isToolTwo = 0, //믹서기가 필수인지 아닌지
-        _isToolThree = 0, //튀김기가 필수인지 아닌지
-    };
-    private clearInfo Answer1 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
-    {
-        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
-        _isGrassTwo = 0, //민들레가 필수인지 아닌지
-        _isGrassThree = 0, //고추가 필수인지 아닌지
-        _isSpiceOne = 0, //간장이 필수인지 아닌지
-        _isSpiceTwo = 0, //된장이 필수인지 아닌지
-        _isSpiceThree = 0, //소금이 필수인지 아닌지
-        _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
-        _isToolOne = 0, //냄비가 필수인지 아닌지
-        _isToolTwo = 0, //믹서기가 필수인지 아닌지
-        _isToolThree = 0, //튀김기가 필수인지 아닌지
-    };
-    private clearInfo Answer1 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
-    {
-        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
-        _isGrassTwo = 0, //민들레가 필수인지 아닌지
-        _isGrassThree = 0, //고추가 필수인지 아닌지
-        _isSpiceOne = 0, //간장이 필수인지 아닌지
-        _isSpiceTwo = 0, //된장이 필수인지 아닌지
-        _isSpiceThree = 0, //소금이 필수인지 아닌지
-        _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
-        _isToolOne = 0, //냄비가 필수인지 아닌지
-        _isToolTwo = 0, //믹서기가 필수인지 아닌지
-        _isToolThree = 0, //튀김기가 필수인지 아닌지
-    };
-    private clearInfo Answer1 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
-    {
-        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
-        _isGrassTwo = 0, //민들레가 필수인지 아닌지
-        _isGrassThree = 0, //고추가 필수인지 아닌지
-        _isSpiceOne = 0, //간장이 필수인지 아닌지
-        _isSpiceTwo = 0, //된장이 필수인지 아닌지
-        _isSpiceThree = 0, //소금이 필수인지 아닌지
-        _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
-        _isToolOne = 0, //냄비가 필수인지 아닌지
-        _isToolTwo = 0, //믹서기가 필수인지 아닌지
-        _isToolThree = 0, //튀김기가 필수인지 아닌지
-    };
-    private clearInfo Answer1 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
-    {
-        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
-        _isGrassTwo = 0, //민들레가 필수인지 아닌지
-        _isGrassThree = 0, //고추가 필수인지 아닌지
-        _isSpiceOne = 0, //간장이 필수인지 아닌지
-        _isSpiceTwo = 0, //된장이 필수인지 아닌지
-        _isSpiceThree = 0, //소금이 필수인지 아닌지
-        _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
-        _isToolOne = 0, //냄비가 필수인지 아닌지
-        _isToolTwo = 0, //믹서기가 필수인지 아닌지
-        _isToolThree = 0, //튀김기가 필수인지 아닌지
-    };
-    private clearInfo Answer1 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
-    {
-        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
-        _isGrassTwo = 0, //민들레가 필수인지 아닌지
-        _isGrassThree = 0, //고추가 필수인지 아닌지
-        _isSpiceOne = 0, //간장이 필수인지 아닌지
-        _isSpiceTwo = 0, //된장이 필수인지 아닌지
-        _isSpiceThree = 0, //소금이 필수인지 아닌지
-        _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
-        _isToolOne = 0, //냄비가 필수인지 아닌지
-        _isToolTwo = 0, //믹서기가 필수인지 아닌지
-        _isToolThree = 0, //튀김기가 필수인지 아닌지
-    };
-    private clearInfo Answer1 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
+    private clearInfo Answer23 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
     {
         _isGrassOne = 0, //강아지풀이 필수인지 아닌지
         _isGrassTwo = 0, //민들레가 필수인지 아닌지

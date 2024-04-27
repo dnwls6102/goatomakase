@@ -93,6 +93,7 @@ public class Ingredient : MonoBehaviour
         RaycastHit2D hit_board = Physics2D.Raycast(mouse_position, Vector3.down, 0.1f, LayerMask.GetMask("table"));
         RaycastHit2D hit_cooker = Physics2D.Raycast(mouse_position, Vector3.down, 0.1f, LayerMask.GetMask("Cooker"));
         RaycastHit2D hit_tray = Physics2D.Raycast(mouse_position, Vector3.down, 0.1f, LayerMask.GetMask("tray"));
+        RaycastHit2D hit_trash_can = Physics2D.Raycast(mouse_position, Vector3.down, 0.1f, LayerMask.GetMask("trash"));
         //생성기면
         if (is_generator)
         {
@@ -180,6 +181,10 @@ public class Ingredient : MonoBehaviour
                 else if(hit_tray.collider != null && state != Ingredient_state.FAILD)
                 {
                     transform.position = hit_tray.transform.position;
+                }
+                else if(hit_trash_can.collider != null)
+                {
+                    hit_trash_can.collider.GetComponent<TrashCan>().Trashing();
                 }
                 else
                 {

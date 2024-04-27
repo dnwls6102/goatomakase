@@ -30,8 +30,9 @@ public class Board : MonoBehaviour
     }
     public void clear_board()
     {
-        for(int i=0;i<ingredient_list.Count; i++)
+        for (int i = 0; i < ingredient_list.Count; i++)
         {
+            //ingredient_list[i].spriteChanger.ChangeToDefualtSprite();
             ingredient_list[i].gameObject.SetActive(false);
         }
         ingredient_list.Clear();
@@ -41,23 +42,23 @@ public class Board : MonoBehaviour
     }
     public bool AddIngredient(Ingredient ingredient)
     {
-        //¿À·ù Ã¼Å©
-        if(ingredient.idx<3 && plate == -1 && grass == -1)
+        //ï¿½ï¿½ï¿½ï¿½ Ã¼Å©
+        if (ingredient.idx < 3 && plate == -1 && grass == -1)
         {
-            //¾þ¾îÁü
-            if(ingredient.state == Ingredient_state.BOILED )
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            if (ingredient.state == Ingredient_state.BOILED)
             {
                 ingredient.spriteRenderer.enabled = true;
                 ingredient.spriteChanger.ChangeToBoilFail();
                 ingredient.state = Ingredient_state.FAILD;
-                
+
             }
-            else if(ingredient.state == Ingredient_state.MIXED)
+            else if (ingredient.state == Ingredient_state.MIXED)
             {
                 ingredient.spriteRenderer.enabled = true;
                 ingredient.spriteChanger.ChangeToMixedFail();
                 ingredient.state = Ingredient_state.FAILD;
-                
+
             }
 
             ingredient.state = Ingredient_state.FAILD;
@@ -65,8 +66,8 @@ public class Board : MonoBehaviour
 
             return true;
         }
-        //grass Ãß°¡
-        if(ingredient.idx < 3 && plate != -1 && grass == -1)
+        //grass ï¿½ß°ï¿½
+        if (ingredient.idx < 3 && plate != -1 && grass == -1)
         {
             //ingredient_list[0] : plate
             if (ingredient_list[0].state == ingredient.state)
@@ -81,11 +82,11 @@ public class Board : MonoBehaviour
                 grass = ingredient.idx;
                 ingredient_list.Add(ingredient);
                 ingredient.transform.position = new Vector3(10, 10, 0);
-                MixGrass(grass + 3); //3¹øºÎÅÍ Æ¢±è
+                MixGrass(grass + 3); //3ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Æ¢ï¿½ï¿½
             }
             else
             {
-                //Àß¸øµÈ ±×¸©°ú Àç·á ¼¯¾úÀ»¶§ ±×¸©Àº 6¹øÀÎµ¦½º¿¡ ¾²·¹±â, ³ª¸ÓÁö´Â 3¹ø ÀÎµ¦½º¿¡ ¾²·¹±â
+                //ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ 6ï¿½ï¿½ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 3ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 ingredient.transform.position = new Vector3(10, 10, 0);
                 if (ingredient_list[0].state == Ingredient_state.FRESH)
                     MixGrass(PLATE_MIX_ERROR_IDX);
@@ -94,29 +95,30 @@ public class Board : MonoBehaviour
                     MixGrass(OTHER_MIX_ERROR_IDX);
                 }
                 ingredient_list[0].state = Ingredient_state.FAILD;
+
             }
-            
+
             return true;
-        }//Á¶¹Ì·á Ãß°¡
-        else if(ingredient.idx >= 3 && ingredient.idx <=6 &&  grass != -1 && condiment == -1)
+        }//ï¿½ï¿½ï¿½Ì·ï¿½ ï¿½ß°ï¿½
+        else if (ingredient.idx >= 3 && ingredient.idx <= 6 && grass != -1 && condiment == -1)
         {
             condiment = ingredient.idx;
             ingredient_list.Add(ingredient);
 
             ingredient.transform.position = new Vector3(10, 10, 0);
             return true;
-        }// ±×¸© Ãß°¡
-        else if(ingredient.idx >6 && plate ==-1)
+        }// ï¿½×¸ï¿½ ï¿½ß°ï¿½
+        else if (ingredient.idx > 6 && plate == -1)
         {
-            
+
             plate = ingredient.idx;
             ingredient_list.Add(ingredient);
-            food_sprite_changer = ingredient.gameObject.GetComponent<FoodSpriteChanger>();  
+            food_sprite_changer = ingredient.gameObject.GetComponent<FoodSpriteChanger>();
 
             return true;
         }
 
-        
+
         return false;
     }
 

@@ -27,7 +27,9 @@ public class GameManager : MonoBehaviour
     public bool _isOrdering = false; // 주문을 받는 중인지 아닌지 판단하는 플래그
     public Text orderText;
     public Text reactionText;
-    public GameObject reactionBallon;
+    // public GameObject reactionBallon;
+
+
     public bool _isFinished = false; // 요리를 완성했는지 못했는지 판단하는 플래그
     public bool _isCorrect = false; // 완성한 요리가 정답인지 아닌지 판단하는 플래그
     public float _timeLimit = 99f; //손님 한명 당 제한시간
@@ -413,7 +415,7 @@ public class GameManager : MonoBehaviour
         badReactionArray = new string[] { "아…", "맛있네요..(표정을 구기며)", "지금 이걸 저 먹으라고 주는 건가요?", "너나 먹어!", "This is not what I want." };
         reactionTime = 1.5f;
         timer = 0.0f;
-        reactionBallon.SetActive(false);
+        // reactionBallon.SetActive(false);
         //_isAngry = false;
 
         //repeatArray = new bool[] { false, false, false, false, false, false };
@@ -430,7 +432,7 @@ public class GameManager : MonoBehaviour
             _isOrdering = true;
             orderText.text = orderArray[orderIndex];
             goatFace.SetDefaultSprite(faceIndex); //염소 기본 얼굴 설정
-            _timeLimit = 5.0f;
+            _timeLimit = 20.0f;
         }
 
         //요리하기 : 유저가 조리기구로 드래그한 재료들이 어떤 재료인지 파악 후 currentSituation변수의 플래그 변경하기
@@ -479,9 +481,11 @@ public class GameManager : MonoBehaviour
                 //goatFace.SetDefaultSprite(faceIndex);
                 //_isAngry = false;
                 reactionIndex = Random.Range(0, 4);
-                reactionBallon.SetActive(true);
+                // reactionBallon.SetActive(true);
+                orderText.text = "";
                 reactionText.text = goodReactionArray[reactionIndex];
                 StartCoroutine(Waiting());
+
                 GameTime += 1.0f;
                 if (GameTime > MaxTime)
                 {
@@ -497,9 +501,11 @@ public class GameManager : MonoBehaviour
                 //goatFace.ChangeToVeryangrySprite(faceIndex);
                 //_isAngry = false;
                 reactionIndex = Random.Range(0, 4);
-                reactionBallon.SetActive(true);
+                // reactionBallon.SetActive(true);
+                orderText.text = "";
                 reactionText.text = badReactionArray[reactionIndex];
                 StartCoroutine(Waiting());
+
                 GameTime -= 1.0f;
                 _isOrdering = false;
             }
@@ -525,10 +531,13 @@ public class GameManager : MonoBehaviour
             //손님 리액션
             //_isAngry = false;
             reactionIndex = Random.Range(0, 4);
-            reactionBallon.SetActive(true);
+            // reactionBallon.SetActive(true);
+            orderText.text = "";
+
             reactionText.text = badReactionArray[reactionIndex];
             //StartCoroutine(AngryWaiting());
             StartCoroutine(Waiting());
+
             //도마 위 치우기
             _isOrdering = false;
             //현재 상황 초기화
@@ -576,7 +585,9 @@ public class GameManager : MonoBehaviour
     {
         //goatFace.SetDefaultSprite(faceIndex);
         yield return new WaitForSeconds(1.0f);
-        reactionBallon.SetActive(false);
+        reactionText.text = "";
+        // reactionText.text = badReactionArray[reactionIndex];
+        //reactionBallon.SetActive(false);
     }
     IEnumerator AngryWaiting()
     {

@@ -182,7 +182,7 @@ public class Ingredient : MonoBehaviour
                 else if (hit_tray.collider != null && state != Ingredient_state.FAILD)
                 {
                     transform.position = hit_tray.transform.position;
-                    //GameManager._isFinished = true;
+                    GameManager.gm._isFinished = true;
                 }
                 else if (hit_trash_can.collider != null)
                 {
@@ -190,7 +190,8 @@ public class Ingredient : MonoBehaviour
                 }
                 else
                 {
-                    transform.position = pre_position;
+                    GameManager.gm._isCorrect = false;
+                    GameManager.gm._isFinished = true;
                 }
             }
 

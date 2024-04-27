@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     public bool _isCorrect = false; // 완성한 요리가 정답인지 아닌지 판단하는 플래그
     public float _timeLimit = 99f; //손님 한명 당 제한시간
     public bool toolFlag = false; //조리기 사용 여부 판정 플래그
-    public GameObject goatFace;
+    public FaceChanger goatFace; //염소 얼굴 변환기 받아오기
 
 
     public Board Doma; //도마
@@ -370,8 +370,11 @@ public class GameManager : MonoBehaviour
     private int temp; //재료의 인덱스를 확인하는 변수
     private int orderIndex; //주문 index를 저장하는 변수
     private int reactionIndex; //리액션 index를 저장하는 변수
+    private int faceIndex; //염소 얼굴 index를 저장하는 변수
     private float reactionTime;
     private float timer;
+    //private bool _isAngry;
+    //private bool _isVeryangry;
     void Awake()
     {
         MaxTime = GameTime;
@@ -409,6 +412,8 @@ public class GameManager : MonoBehaviour
         reactionTime = 1.5f;
         timer = 0.0f;
         reactionBallon.SetActive(false);
+        //_isAngry = false;
+
         //repeatArray = new bool[] { false, false, false, false, false, false };
         //indexStack = new Stack<int>();
     }
@@ -418,9 +423,11 @@ public class GameManager : MonoBehaviour
     {
         if (_isOrdering == false) //주문이 없는 경우 : 주문 받기
         {
-            orderIndex = Random.Range(0, 22); //어떤 주문을 할지 난수 생성 (temp = Random.Range(0, 22))
+            orderIndex = Random.Range(0, 23); //어떤 주문을 할지 난수 생성 (temp = Random.Range(0, 22))
+            faceIndex = Random.Range(0, 3); //염소 스프라이트 추가되면 (0,4)로 수정해야함.
             _isOrdering = true;
             orderText.text = orderArray[orderIndex];
+            goatFace.SetDefaultSprite(faceIndex); //염소 기본 얼굴 설정
             _timeLimit = 5.0f;
         }
 
@@ -467,6 +474,8 @@ public class GameManager : MonoBehaviour
             if (_isCorrect) //정답일 경우
             {
                 Debug.Log("정답");
+                //goatFace.SetDefaultSprite(faceIndex);
+                //_isAngry = false;
                 reactionIndex = Random.Range(0, 4);
                 reactionBallon.SetActive(true);
                 reactionText.text = goodReactionArray[reactionIndex];
@@ -482,6 +491,8 @@ public class GameManager : MonoBehaviour
             else //오답일 경우
             {
                 Debug.Log("오답");
+                //goatFace.ChangeToVeryangrySprite(faceIndex);
+                //_isAngry = false;
                 reactionIndex = Random.Range(0, 4);
                 reactionBallon.SetActive(true);
                 reactionText.text = badReactionArray[reactionIndex];
@@ -498,13 +509,28 @@ public class GameManager : MonoBehaviour
         GameTime -= Time.deltaTime;
         CheckTime();
         _timeLimit -= Time.deltaTime;
+        // if (_timeLimit < 10 && _timeLimit >= 5 && _isAngry == false)
+        // {
+        //     goatFace.ChangeToAngrySprite(faceIndex);
+        //     _isAngry = true;
+        // }
+
+
         if (_timeLimit < 0)
         {
             Debug.Log("손님 시간 초과");
+            //손님 리액션
+            //_isAngry = false;
+            reactionIndex = Random.Range(0, 4);
+            reactionBallon.SetActive(true);
+            reactionText.text = badReactionArray[reactionIndex];
+            //StartCoroutine(AngryWaiting());
+            StartCoroutine(Waiting());
             //도마 위 치우기
             _isOrdering = false;
             //현재 상황 초기화
             ResetCurrentSituation();
+
         }
         if (GameTime < 0) //게임 오버 여부 : 코루틴으로 만들기(시간되면)
         {
@@ -544,8 +570,15 @@ public class GameManager : MonoBehaviour
 
     IEnumerator Waiting()
     {
+        //goatFace.SetDefaultSprite(faceIndex);
         yield return new WaitForSeconds(1.0f);
         reactionBallon.SetActive(false);
+    }
+    IEnumerator AngryWaiting()
+    {
+        Debug.Log("화남");
+        yield return new WaitForSeconds(1.0f);
+        goatFace.ChangeToVeryangrySprite(faceIndex);
     }
 
     public void CheckIngredient(int index)

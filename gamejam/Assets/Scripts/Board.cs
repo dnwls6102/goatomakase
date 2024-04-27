@@ -15,6 +15,7 @@ public class Board : MonoBehaviour
     public int plate;
     public int condiment;
     public int grass;
+    public bool can_add;
     void Start()
     {
         ingredient_list = new List<Ingredient>();
@@ -31,9 +32,11 @@ public class Board : MonoBehaviour
     public void clear_board()
     {
         for (int i = 0; i < ingredient_list.Count; i++)
-        {
-            //ingredient_list[i].spriteChanger.ChangeToDefualtSprite();
-            ingredient_list[i].gameObject.SetActive(false);
+        {/*
+            ingredient_list[i].spriteChanger.ChangeToDefualtSprite()
+            ingredient_list[i].gameObject.SetActive(false);*/
+
+            Destroy(ingredient_list[i].gameObject);
         }
         ingredient_list.Clear();
         plate = -1;
@@ -61,6 +64,7 @@ public class Board : MonoBehaviour
 
             }
 
+            ingredient_list.Add(ingredient);
             ingredient.state = Ingredient_state.FAILD;
 
 
@@ -89,15 +93,61 @@ public class Board : MonoBehaviour
                 //�߸��� �׸��� ��� �������� �׸��� 6���ε����� ������, �������� 3�� �ε����� ������
                 ingredient.transform.position = new Vector3(10, 10, 0);
                 if (ingredient_list[0].state == Ingredient_state.FRESH)
-                    MixGrass(PLATE_MIX_ERROR_IDX);
-                else
                 {
-                    MixGrass(OTHER_MIX_ERROR_IDX);
+                    if (ingredient.state == Ingredient_state.BOILED)
+                    {
+                        MixGrass(PLATE_MIX_ERROR_IDX);
+                    }
+                    else if (ingredient.state == Ingredient_state.MIXED)
+                    {
+                        MixGrass(PLATE_MIX_ERROR_IDX + 1);
+                    }
+
+
                 }
+
+
+                else if (ingredient_list[0].state == Ingredient_state.BOILED)
+                {
+                    if (ingredient.state == Ingredient_state.FRESH)
+                    {
+                        MixGrass(OTHER_MIX_ERROR_IDX);
+                    }
+                    else if (ingredient.state == Ingredient_state.MIXED)
+                    {
+                        MixGrass(OTHER_MIX_ERROR_IDX + 1);
+                    }
+                    else if (ingredient.state == Ingredient_state.FRYED)
+                    {
+                        MixGrass(OTHER_MIX_ERROR_IDX + 2);
+                    }
+                }
+
+                else if (ingredient_list[0].state == Ingredient_state.MIXED)
+                {
+                    if (ingredient.state == Ingredient_state.BOILED)
+                    {
+                        MixGrass(OTHER_MIX_ERROR_IDX);
+                    }
+                    else if (ingredient.state == Ingredient_state.FRESH)
+                    {
+                        MixGrass(OTHER_MIX_ERROR_IDX + 1);
+                    }
+                    else if (ingredient.state == Ingredient_state.FRYED)
+                    {
+                        MixGrass(OTHER_MIX_ERROR_IDX + 2);
+                    }
+                }
+
+
+                ingredient_list.Add(ingredient);
                 ingredient_list[0].state = Ingredient_state.FAILD;
 
             }
+<<<<<<< HEAD
 
+=======
+>>>>>>> e3f91faa4dee0c7da3142f7facc6e5c69b4f9e57
             return true;
         }//���̷� �߰�
         else if (ingredient.idx >= 3 && ingredient.idx <= 6 && grass != -1 && condiment == -1)

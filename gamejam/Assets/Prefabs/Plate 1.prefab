@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7998399256899448562}
   - component: {fileID: 1936306770857493588}
   - component: {fileID: 6156636113421882406}
+  - component: {fileID: -6149633516683814269}
   m_Layer: 0
   m_Name: Plate 1
   m_TagString: Untagged
@@ -176,4 +177,25 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 523fd656089e1b54787bb2665cfd4375, type: 3}
   - {fileID: 21300000, guid: 523fd656089e1b54787bb2665cfd4375, type: 3}
   - {fileID: 21300000, guid: 523fd656089e1b54787bb2665cfd4375, type: 3}
-  - {fileID: 21300000, guid: 07058b0d3d1239943bace99193371507, type: 3}
+  - {fileID: 21300000, guid: 807215a31d9ea8c45be6a6e60d5f74c9, type: 3}
+  - {fileID: 21300000, guid: 7e959fe01e313d34a8d5e2b824819dde, type: 3}
+--- !u!114 &-6149633516683814269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34926870615260993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 809545f0380cbd34da74f28b70362149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 402518229057058486}
+  can_put_idx: 
+  defualt_sprite: {fileID: 21300000, guid: dbfd9524542aeec4488271fb40115b2f, type: 3}
+  cooking_sprite: {fileID: 0}
+  cooked_sprite: {fileID: 0}
+  boil_fail: {fileID: 0}
+  mixed_fail: {fileID: 0}
+  spritelist: []

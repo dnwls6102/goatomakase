@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum Ingredient_state{
+public enum Ingredient_state
+{
     FRESH,
     MIXED,
     BOILED,
@@ -19,7 +20,7 @@ public class Ingredient : MonoBehaviour
     public SpriteChanger spriteChanger;
     Cooker cooker;
     public int idx;
-    public bool dragable; 
+    public bool dragable;
     public bool cooked;
     public bool is_plate;
     public bool in_board;
@@ -32,7 +33,7 @@ public class Ingredient : MonoBehaviour
 
     public Sprite pot_to_board;
     public Sprite mixer_to_board;
-    
+
     private void Awake()
     {
         cam = Camera.main;
@@ -42,7 +43,7 @@ public class Ingredient : MonoBehaviour
         spriteChanger = gameObject.GetComponent<SpriteChanger>();
         dragable = true;
         in_board = false;
-        if(!is_plate)
+        if (!is_plate)
         {
             state = Ingredient_state.FRESH;
         }
@@ -50,7 +51,7 @@ public class Ingredient : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if(is_generator)
+        if (is_generator)
         {
             pre_position = transform.position;
             spriteRenderer.enabled = true;
@@ -63,11 +64,11 @@ public class Ingredient : MonoBehaviour
             }
         }
 
-        
+
     }
     private void OnMouseDrag()
     {
-        if(is_generator)
+        if (is_generator)
         {
             Vector2 mouse_position = Input.mousePosition;
             mouse_position = cam.ScreenToWorldPoint(mouse_position);
@@ -83,8 +84,8 @@ public class Ingredient : MonoBehaviour
             }
         }
 
-        
-        
+
+
     }
     private void OnMouseUp()
     {
@@ -94,7 +95,7 @@ public class Ingredient : MonoBehaviour
         RaycastHit2D hit_cooker = Physics2D.Raycast(mouse_position, Vector3.down, 0.1f, LayerMask.GetMask("Cooker"));
         RaycastHit2D hit_tray = Physics2D.Raycast(mouse_position, Vector3.down, 0.1f, LayerMask.GetMask("tray"));
         RaycastHit2D hit_trash_can = Physics2D.Raycast(mouse_position, Vector3.down, 0.1f, LayerMask.GetMask("trash"));
-        //»ý¼º±â¸é
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (is_generator)
         {
             if (hit_board.collider != null)
@@ -114,31 +115,31 @@ public class Ingredient : MonoBehaviour
                 }
                 ingredient.cooked = true;
                 ingredient.in_board = true;
-                
+
             }
             else if (hit_cooker.collider != null && hit_cooker.collider.gameObject.GetComponent<Cooker>().busy == false && can_fry)
             {
 
                 Ingredient ingredient = pool.Get(idx).GetComponent<Ingredient>();
                 ingredient.transform.position = mouse_position;
-                
+
                 print(hit_cooker.collider.name);
                 hit_cooker.collider.gameObject.GetComponent<Cooker>().Cook(ingredient);
                 ingredient.dragable = false;
                 ingredient.cooker = hit_cooker.collider.gameObject.GetComponent<Cooker>();
 
-                if(hit_cooker.collider.name == "Fryer")
+                if (hit_cooker.collider.name == "Fryer")
                 {
                     print(55);
                     ingredient.spriteRenderer.enabled = true;
                     ingredient.state = Ingredient_state.FRYED;
-                    
+
                 }
-                else if (hit_cooker.collider.name == "Pot" )
+                else if (hit_cooker.collider.name == "Pot")
                 {
                     ingredient.state = Ingredient_state.BOILED;
                 }
-                else if(hit_cooker.collider.name == "Mixer")
+                else if (hit_cooker.collider.name == "Mixer")
                 {
                     ingredient.state = Ingredient_state.MIXED;
                 }
@@ -159,31 +160,31 @@ public class Ingredient : MonoBehaviour
                     cooked = true;
 
                     if
-                    (hit_board.collider.gameObject.GetComponent<Board>().AddIngredient(this) ==  false)
+                    (hit_board.collider.gameObject.GetComponent<Board>().AddIngredient(this) == false)
                     {
                         transform.position = pre_position;
                         return;
                     }
                     cooker.cooker_SpriteChanger.ChangeToDefualtSprite();
                     cooker.busy = false;
-                    
-                }
-/*                else if (hit_cooker.collider != null && !cooked && can_fry)
-                {
 
-                    Ingredient ingredient = pool.Get(idx).GetComponent<Ingredient>();
-                    ingredient.transform.position = mouse_position;
-                    ingredient.spriteRenderer.enabled = true;
-                    print(hit_cooker.collider.name);
-                    hit_cooker.collider.gameObject.GetComponent<Cooker>().Cook(ingredient);
-                    ingredient.dragable = false;
-                }*/
-                else if(hit_tray.collider != null && state != Ingredient_state.FAILD)
+                }
+                /*                else if (hit_cooker.collider != null && !cooked && can_fry)
+                                {
+
+                                    Ingredient ingredient = pool.Get(idx).GetComponent<Ingredient>();
+                                    ingredient.transform.position = mouse_position;
+                                    ingredient.spriteRenderer.enabled = true;
+                                    print(hit_cooker.collider.name);
+                                    hit_cooker.collider.gameObject.GetComponent<Cooker>().Cook(ingredient);
+                                    ingredient.dragable = false;
+                                }*/
+                else if (hit_tray.collider != null && state != Ingredient_state.FAILD)
                 {
                     transform.position = hit_tray.transform.position;
                     
                 }
-                else if(hit_trash_can.collider != null)
+                else if (hit_trash_can.collider != null)
                 {
                     hit_trash_can.collider.GetComponent<TrashCan>().Trashing();
                     
@@ -195,7 +196,7 @@ public class Ingredient : MonoBehaviour
             }
 
         }
-        
+
     }
 
 /*    private void OnDisable()

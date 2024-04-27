@@ -3409,6 +3409,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1376560992}
   - component: {fileID: 1376560991}
+  - component: {fileID: 1376560993}
   m_Layer: 0
   m_Name: "\uBC31\uC5FC\uC18C_01"
   m_TagString: Untagged
@@ -3483,6 +3484,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1376560993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376560990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46e2350541a5f794380bf0ce7172632b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1376560991}
+  default_sprite_white: {fileID: 21300000, guid: a18644e3b1ca8324a916ab3917293fe1, type: 3}
+  angry_sprite_white: {fileID: 21300000, guid: a275f9947160a094a8313e088556f218, type: 3}
+  veryangry_sprite_white: {fileID: 21300000, guid: 22eb82f65a6b9cb4b9d92570c7d3aa29, type: 3}
+  default_sprite_black: {fileID: 21300000, guid: 5cd1019ff6d6fe747929eb953b33cc5a, type: 3}
+  angry_sprite_black: {fileID: 21300000, guid: fa2848d0ab15cd849b53dfaca51a9a21, type: 3}
+  veryangry_sprite_black: {fileID: 21300000, guid: 07058b0d3d1239943bace99193371507, type: 3}
+  default_sprite_devil: {fileID: 21300000, guid: c9fc9c15971cba043a904ae26b0cb65a, type: 3}
+  angry_sprite_devil: {fileID: 21300000, guid: 5f3dabac57ed59147b20d2b7cea36c61, type: 3}
+  verangry_sprite_devil: {fileID: 21300000, guid: 381e2198cd22223429402b0891d91565, type: 3}
 --- !u!1 &1433672691
 GameObject:
   m_ObjectHideFlags: 0
@@ -3957,7 +3980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxTime: 0
-  GameTime: 1000
+  GameTime: 10
   TimeBar: {fileID: 1851048310}
   _isOrdering: 0
   orderText: {fileID: 2072855876}
@@ -3966,6 +3989,9 @@ MonoBehaviour:
   _isFinished: 0
   _isCorrect: 0
   _timeLimit: 99
+  toolFlag: 0
+  goatFace: {fileID: 1376560993}
+  score: 0
   Doma: {fileID: 311328021}
 --- !u!1 &1535719131
 GameObject:

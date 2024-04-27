@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     public float _timeLimit = 99f; //손님 한명 당 제한시간
     public bool toolFlag = false; //조리기 사용 여부 판정 플래그
     public FaceChanger goatFace; //염소 얼굴 변환기 받아오기
+    public int score = 0;
 
 
     public Board Doma; //도마
@@ -485,6 +486,7 @@ public class GameManager : MonoBehaviour
                 {
                     MaxTime = GameTime;
                 }
+                score += 1;
                 _isOrdering = false;
                 _isCorrect = false;
             }
@@ -536,6 +538,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Time Over");
             Time.timeScale = 0f;
+            Debug.Log(score);
         }
     }
 

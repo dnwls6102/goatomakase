@@ -519,25 +519,25 @@ public class GameManager : MonoBehaviour
     {
         switch (index)
         {
-            case 1:
+            case 0:
                 currentSituation._isGrassOne = 1;
                 break;
-            case 2:
+            case 1:
                 currentSituation._isGrassTwo = 1;
                 break;
-            case 3:
+            case 2:
                 currentSituation._isGrassThree = 1;
                 break;
-            case 4:
+            case 3:
                 currentSituation._isSpiceOne = 1;
                 break;
-            case 5:
+            case 4:
                 currentSituation._isSpiceTwo = 1;
                 break;
-            case 6:
+            case 5:
                 currentSituation._isSpiceThree = 1;
                 break;
-            case 7:
+            case 6:
                 currentSituation._isSpiceFour = 1;
                 break;
             default: //조리한 재료들이 올라올 경우의 분기

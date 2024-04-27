@@ -12,9 +12,9 @@ struct clearInfo
     public bool _isSpiceTwo; //2번 조미료가 필수인지 아닌지
     public bool _isSpiceThree; //3번 조미료가 필수인지 아닌지
     public bool _isSpiceFour; //4번 조미료가 필수인지 아닌지
-    public bool _isToolOne; //1번 도구가 필수인지 아닌지
-    public bool _isToolTwo; //2번 도구가 필수인지 아닌지
-    public bool _isToolThree; //3번 도구가 필수인지 아닌지
+    public bool _isToolOne; //냄비가 필수인지 아닌지
+    public bool _isToolTwo; //믹서기가 필수인지 아닌지
+    public bool _isToolThree; //튀김기가 필수인지 아닌지
 }
 
 public class GameManager : MonoBehaviour
@@ -26,6 +26,10 @@ public class GameManager : MonoBehaviour
     //public int cuisine_num = 0;
     public bool _isOrdering = false;
     public Text orderText;
+    public Board Doma; //도마
+    //public Board Fryer; //튀김기
+    //public Board Naembi; //냄비
+    //public Board Blender; //믹서기
     // public GameObject Salad;
     // public GameObject Chicken;
     // public GameObject Soup;
@@ -37,6 +41,19 @@ public class GameManager : MonoBehaviour
     private string[] goodReactionArray; //좋은 반응들을 저장하는 배열
     private string[] badReactionArray; //나쁜 반응들을 저장하는 배열
     private List<clearInfo> answerArray; //주문에 대한 정답을 저장하는 배열
+    private clearInfo currentSituation = new clearInfo()
+    {
+        _isGrassOne = false,
+        _isGrassTwo = false,
+        _isGrassThree = false,
+        _isSpiceOne = false,
+        _isSpiceTwo = false,
+        _isSpiceThree = false,
+        _isSpiceFour = false,
+        _isToolOne = false,
+        _isToolTwo = false,
+        _isToolThree = false,
+    };
 
     //private bool[] repeatArray;
     //private Stack<int> indexStack;
@@ -126,7 +143,6 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         MaxTime = GameTime;
-        // 순서대로 샐러드 치킨 스프 찌개 와인 스무디
         orderArray = new string[] { "밥줘", "배고파", "물줘", "추워", "입이 근질근질", "난 비건이야" };
         answerArray = new List<clearInfo>() { firstAnswer, secondAnswer, thirdAnswer, fourthAnswer, fifthAnswer, sixthAnswer };
         //repeatArray = new bool[] { false, false, false, false, false, false };
@@ -136,7 +152,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_isOrdering == false)
+        if (_isOrdering == false) //주문이 없는 경우 : 주문 받기
         {
 
             temp = Random.Range(0, 5); //어떤 주문을 할지 난수 생성
@@ -149,10 +165,38 @@ public class GameManager : MonoBehaviour
             //indexStack.Push(temp);
             _isOrdering = true;
             orderText.text = orderArray[temp];
-
         }
 
-        // 요리 갯수만큼 (0, cuisineArray의 크기 - 1) 범위의 난수 생성
+        //요리하기 : 유저가 조리기구로 드래그한 재료들이 어떤 재료인지 파악 후 currentSituation변수의 플래그 변경하기
+        //도마 - 냄비 - 믹서기 - 튀김기 순으로 체크
+        if (Doma.ingredient_list.Count != 0)
+        {
+            temp = Doma.ingredient_list[^1].index;
+            Debug.Log(temp);
+            CheckIngredient(temp); //재료 플래그 함수
+        }
+        // if (Naembi.ingredient_list.Count != 0) //냄비의 ingredient_list에 재료가 있을 경우
+        // {
+        //     currentSituation._isToolOne = true; //냄비 사용 플래그 ON
+        //     temp = Naembi.ingredient_list[^1].index; //냄비 ingredient_list의 마지막 원소의 index를 뽑아옴
+        //     Debug.Log(temp);
+        //     CheckIngredient(temp);
+        // }
+        // if (Blender.ingredient_list.Count != 0) //믹서기의 ingredient_list에 재료가 있을 경우
+        // {
+        //     currentSituation._isToolTwo = true; //믹서기 사용 플래그 ON
+        //     temp = Blender.ingredient_list[^1].index; //믹서기의 ingredient_list의 마지막 원소의 index를 뽑아옴
+        //     Debug.Log(temp);
+        //     CheckIngredient(temp);
+        // }
+        // if (Fryer.ingredient_list.Count != 0) //튀김기의 ingredient_list에 재료가 있을 경우
+        // {
+        //     currentSituation._isToolThree = true; // 튀김기 사용 플래그 ON
+        //     temp = Fryer.ingredient_list[^1].index; //튀김기의 ingredient_list의 마지막 원소의 index를 뽑아옴
+        //     Debug.Log(temp);
+        //     CheckIngredient(temp);
+        // }
+
 
         GameTime -= Time.deltaTime;
         CheckTime();
@@ -185,5 +229,37 @@ public class GameManager : MonoBehaviour
     {
         GameTime -= 1.0f;
         _isOrdering = false; //틀렸으니까 다른 주문 받기
+    }
+
+    public void CheckIngredient(int index)
+    {
+        switch (index)
+        {
+            case 1:
+                currentSituation._isGrassOne = true;
+                break;
+            case 2:
+                currentSituation._isGrassTwo = true;
+                break;
+            case 3:
+                currentSituation._isGrassThree = true;
+                break;
+            case 4:
+                currentSituation._isSpiceOne = true;
+                break;
+            case 5:
+                currentSituation._isSpiceTwo = true;
+                break;
+            case 6:
+                currentSituation._isSpiceThree = true;
+                break;
+            case 7:
+                currentSituation._isSpiceFour = true;
+                break;
+            default:
+                Debug.Log("재료 인덱싱 오류");
+                break;
+        }
+
     }
 }

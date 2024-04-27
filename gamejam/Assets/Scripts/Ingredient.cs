@@ -8,15 +8,16 @@ public class Ingredient : MonoBehaviour
     Vector2 pre_position;
     GameObject board;
     SpriteRenderer spriteRenderer;
+    public int index = 0;
     private void Awake()
     {
         cam = Camera.main;
         board = GameObject.Find("board");
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>(); 
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
     void Update()
     {
-        
+
     }
 
     private void OnMouseDown()
@@ -31,15 +32,15 @@ public class Ingredient : MonoBehaviour
         Vector2 mouse_position = Input.mousePosition;
         mouse_position = cam.ScreenToWorldPoint(mouse_position);
         transform.position = mouse_position;
-        
+
     }
     private void OnMouseUp()
     {
         Vector2 mouse_position = Input.mousePosition;
         mouse_position = cam.ScreenToWorldPoint(mouse_position);
         RaycastHit2D hit = Physics2D.Raycast(mouse_position, Vector3.down, 1, LayerMask.GetMask("table"));
-        
-        if(hit.collider != null)
+
+        if (hit.collider != null)
         {
             if (hit.collider.gameObject.GetComponent<Board>() != null)
             {
@@ -49,7 +50,7 @@ public class Ingredient : MonoBehaviour
             {
                 hit.collider.gameObject.GetComponent<Cooker_SpriteChanger>().ChangeToCookingSprite(0);
             }
-            
+
         }
 
         transform.position = pre_position;

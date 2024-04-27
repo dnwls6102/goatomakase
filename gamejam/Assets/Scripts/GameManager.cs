@@ -31,6 +31,9 @@ public class GameManager : MonoBehaviour
     public bool _isFinished = false; // 요리를 완성했는지 못했는지 판단하는 플래그
     public bool _isCorrect = false; // 완성한 요리가 정답인지 아닌지 판단하는 플래그
     public float _timeLimit = 99f; //손님 한명 당 제한시간
+    public bool toolFlag = false; //조리기 사용 여부 판정 플래그
+    public GameObject goatFace;
+
 
     public Board Doma; //도마
     //public Board Fryer; //튀김기
@@ -47,7 +50,7 @@ public class GameManager : MonoBehaviour
     private string[] goodReactionArray; //좋은 반응들을 저장하는 배열
     private string[] badReactionArray; //나쁜 반응들을 저장하는 배열
     private List<clearInfo> answerArray; //주문에 대한 정답을 저장하는 배열
-    private bool toolFlag = false; //조리기는 한번에 한번씩만 사용
+
     private clearInfo currentSituation = new clearInfo()
     {
         _isGrassOne = -1,
@@ -421,7 +424,6 @@ public class GameManager : MonoBehaviour
             _timeLimit = 5.0f;
         }
 
-
         //요리하기 : 유저가 조리기구로 드래그한 재료들이 어떤 재료인지 파악 후 currentSituation변수의 플래그 변경하기
         //도마 - 냄비 - 믹서기 - 튀김기 순으로 체크 -> 냄비 / 믹서기 / 튀김기 사용 여부는 각자 script에서 판정.
         if (Doma.ingredient_list.Count != 0)
@@ -437,6 +439,7 @@ public class GameManager : MonoBehaviour
         //     temp = Naembi.ingredient_list[^1].index; //냄비 ingredient_list의 마지막 원소의 index를 뽑아옴
         //     Debug.Log(temp);
         //     CheckIngredient(temp);
+        //     냄비 사용시 ToolFlag 활성화시키기
         // }
         // if (Blender.ingredient_list.Count != 0) //믹서기의 ingredient_list에 재료가 있을 경우
         // {
@@ -444,6 +447,7 @@ public class GameManager : MonoBehaviour
         //     temp = Blender.ingredient_list[^1].index; //믹서기의 ingredient_list의 마지막 원소의 index를 뽑아옴
         //     Debug.Log(temp);
         //     CheckIngredient(temp);
+        //     믹서기 사용시 ToolFlag 활성화시키기
         // }
         // if (Fryer.ingredient_list.Count != 0) //튀김기의 ingredient_list에 재료가 있을 경우
         // {
@@ -451,6 +455,7 @@ public class GameManager : MonoBehaviour
         //     temp = Fryer.ingredient_list[^1].index; //튀김기의 ingredient_list의 마지막 원소의 index를 뽑아옴
         //     Debug.Log(temp);
         //     CheckIngredient(temp);
+        //     튀김기 사용시 FryerFlag 활성화시키기
         // }
 
         // 요리한 재료들 합친 후 완성본 보여주기
@@ -486,6 +491,8 @@ public class GameManager : MonoBehaviour
             }
             //도마 위 치우기
             _isFinished = false; //완성 여부 플래그의 초기화
+            //현재 상황 초기화
+            ResetCurrentSituation();
         }
 
         GameTime -= Time.deltaTime;
@@ -496,6 +503,8 @@ public class GameManager : MonoBehaviour
             Debug.Log("손님 시간 초과");
             //도마 위 치우기
             _isOrdering = false;
+            //현재 상황 초기화
+            ResetCurrentSituation();
         }
         if (GameTime < 0) //게임 오버 여부 : 코루틴으로 만들기(시간되면)
         {
@@ -564,10 +573,25 @@ public class GameManager : MonoBehaviour
             case 6:
                 currentSituation._isSpiceFour = 1;
                 break;
-            default: //조리한 재료들이 올라올 경우의 분기
-                Debug.Log("재료 인덱싱 오류");
+            default: //접시(=조리한 재료)가 올라올때 실행될 분기
+                Debug.Log("접시(혹은 조리한 재료)가 올라온 상태");
                 break;
         }
+    }
+
+    public void ResetCurrentSituation()
+    {
+        Debug.Log("현재 상황 초기화");
+        currentSituation._isGrassOne = -1;
+        currentSituation._isGrassTwo = -1;
+        currentSituation._isGrassThree = -1;
+        currentSituation._isSpiceOne = -1;
+        currentSituation._isSpiceTwo = -1;
+        currentSituation._isSpiceThree = -1;
+        currentSituation._isSpiceFour = -1;
+        currentSituation._isToolOne = -1;
+        currentSituation._isToolTwo = -1;
+        currentSituation._isToolThree = -1;
     }
 
     // 클리어 여부 판정
@@ -628,6 +652,7 @@ public class GameManager : MonoBehaviour
             {
                 return false;
             }
+
         }
         if (currentSituation._isToolTwo != answerArray[orderindex]._isToolTwo) //현재 주문의 Tool2 플래그가 정답의 Tool2 플래그와 다를 경우
         {

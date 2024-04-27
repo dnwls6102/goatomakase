@@ -361,8 +361,6 @@ public class GameManager : MonoBehaviour
         _isToolTwo = 0, //믹서기가 필수인지 아닌지
         _isToolThree = 0, //튀김기가 필수인지 아닌지
     };
-    private bool secondDish;
-    private bool thirdDish;
     private int temp; //재료의 인덱스를 확인하는 변수
     private int orderIndex; //주문 index를 저장하는 변수
 

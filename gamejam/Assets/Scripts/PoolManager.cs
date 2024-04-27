@@ -32,7 +32,7 @@ public class PoolManager : MonoBehaviour
     public GameObject Get(int ID)
     {
         GameObject select = null;
-
+/*
 
         foreach (GameObject item in pools[ID])
         {
@@ -44,10 +44,10 @@ public class PoolManager : MonoBehaviour
             }
         }
         if (select == null)
-        {
+        {*/
             select = Instantiate(prefabs[ID], transform);
-            pools[ID].Add(select);
-        }
+/*            pools[ID].Add(select);
+        }*/
 
         return select;
     }

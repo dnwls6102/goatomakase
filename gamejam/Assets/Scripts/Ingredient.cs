@@ -181,10 +181,12 @@ public class Ingredient : MonoBehaviour
                 else if(hit_tray.collider != null && state != Ingredient_state.FAILD)
                 {
                     transform.position = hit_tray.transform.position;
+                    
                 }
                 else if(hit_trash_can.collider != null)
                 {
                     hit_trash_can.collider.GetComponent<TrashCan>().Trashing();
+                    
                 }
                 else
                 {
@@ -195,5 +197,10 @@ public class Ingredient : MonoBehaviour
         }
         
     }
+
+/*    private void OnDisable()
+    {
+        spriteChanger.ChangeToDefualtSprite();
+    }*/
 
 }

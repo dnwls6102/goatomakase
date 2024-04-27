@@ -144,10 +144,6 @@ public class Board : MonoBehaviour
                 ingredient_list[0].state = Ingredient_state.FAILD;
 
             }
-<<<<<<< HEAD
-
-=======
->>>>>>> e3f91faa4dee0c7da3142f7facc6e5c69b4f9e57
             return true;
         }//���̷� �߰�
         else if (ingredient.idx >= 3 && ingredient.idx <= 6 && grass != -1 && condiment == -1)

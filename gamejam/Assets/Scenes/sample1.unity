@@ -903,6 +903,7 @@ MonoBehaviour:
   plate: 0
   condiment: 0
   grass: 0
+  can_add: 0
 --- !u!61 &311328022
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1031,7 +1032,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &343046469
 Transform:
   m_ObjectHideFlags: 0
@@ -1380,11 +1381,6 @@ MonoBehaviour:
   cooker_SpriteChanger: {fileID: 402434676}
   time: 5
   busy: 0
---- !u!1 &416939188 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7411232542142466700, guid: 571bcfd914e390947b886276879bf8b0, type: 3}
-  m_PrefabInstance: {fileID: 810986585}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &416939189 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5369548613126458430, guid: 571bcfd914e390947b886276879bf8b0, type: 3}
@@ -3435,7 +3431,6 @@ MonoBehaviour:
   _isOrdering: 0
   orderText: {fileID: 1928879005}
   reactionText: {fileID: 1609965753}
-  reactionBallon: {fileID: 416939188}
   _isFinished: 0
   _isCorrect: 0
   _timeLimit: 99

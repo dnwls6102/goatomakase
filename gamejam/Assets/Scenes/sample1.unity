@@ -881,7 +881,6 @@ GameObject:
   - component: {fileID: 275003214}
   - component: {fileID: 275003216}
   - component: {fileID: 275003215}
-  - component: {fileID: 275003217}
   m_Layer: 3
   m_Name: TrashCan
   m_TagString: Untagged
@@ -1001,19 +1000,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &275003217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 275003213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db153b9fd95644b4ea316bc7c1d0328e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ingredient_list: []
 --- !u!1 &311328020
 GameObject:
   m_ObjectHideFlags: 0
@@ -1287,7 +1273,6 @@ GameObject:
   - component: {fileID: 402434675}
   - component: {fileID: 402434674}
   - component: {fileID: 402434673}
-  - component: {fileID: 402434672}
   m_Layer: 3
   m_Name: Fryer
   m_TagString: Untagged
@@ -1295,19 +1280,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &402434672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 402434671}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db153b9fd95644b4ea316bc7c1d0328e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ingredient_list: []
 --- !u!61 &402434673
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3902,7 +3874,6 @@ GameObject:
   - component: {fileID: 1433672694}
   - component: {fileID: 1433672693}
   - component: {fileID: 1433672696}
-  - component: {fileID: 1433672697}
   m_Layer: 3
   m_Name: Pot
   m_TagString: Untagged
@@ -4050,19 +4021,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
---- !u!114 &1433672697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1433672691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db153b9fd95644b4ea316bc7c1d0328e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ingredient_list: []
 --- !u!1 &1483439635
 GameObject:
   m_ObjectHideFlags: 0
@@ -4257,9 +4215,6 @@ MonoBehaviour:
   _isOrdering: 0
   orderText: {fileID: 1757641640}
   Doma: {fileID: 311328020}
-  Fryer: {fileID: 402434671}
-  Naembi: {fileID: 1433672691}
-  Blender: {fileID: 1483439635}
 --- !u!1 &1535719131
 GameObject:
   m_ObjectHideFlags: 0

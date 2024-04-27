@@ -24,9 +24,11 @@ public class GameManager : MonoBehaviour
     public float GameTime = 5.0f;
     public Slider TimeBar;
     //public int cuisine_num = 0;
-    public bool _isOrdering = false;
+    public bool _isOrdering = false; // 주문을 받는 중인지 아닌지 판단하는 플래그
     public Text orderText;
-    public bool _isCorrect = true;
+    public bool _isFinished = false; // 요리를 완성했는지 못했는지 판단하는 플래그
+    public bool _isCorrect = false; // 완성한 요리가 정답인지 아닌지 판단하는 플래그
+
     public Board Doma; //도마
     //public Board Fryer; //튀김기
     //public Board Naembi; //냄비
@@ -450,17 +452,36 @@ public class GameManager : MonoBehaviour
         // 요리한 재료들 합친 후 완성본 보여주기
 
         // 클리어 여부 판정
-        if (currentSituation._isGrassOne != answerArray[orderIndex]._isGrassOne)
+        if (_isFinished) //만약 요리를 완성했다면
         {
-            if (answerArray[orderIndex]._isGrassOne == 0)
-
+            _isCorrect = CheckCorrect(orderIndex);
+            if (_isCorrect) //정답일 경우
+            {
+                Debug.Log("정답");
+                GameTime += 1.0f;
+                if (GameTime > MaxTime)
+                {
+                    MaxTime = GameTime;
+                }
+                _isOrdering = false;
+                _isCorrect = false;
+            }
+            else //오답일 경우
+            {
+                Debug.Log("오답");
+                GameTime -= 1.0f;
+                _isOrdering = false;
+            }
+            _isFinished = false; //완성 여부 플래그의 초기화
         }
+
+
 
 
 
         GameTime -= Time.deltaTime;
         CheckTime();
-        if (GameTime < 0)
+        if (GameTime < 0) //게임 오버 여부 : 코루틴으로 만들기(시간되면)
         {
             Debug.Log("Time Over");
             Time.timeScale = 0f;
@@ -491,6 +512,11 @@ public class GameManager : MonoBehaviour
         _isOrdering = false; //틀렸으니까 다른 주문 받기
     }
 
+    public void FinishDebug()
+    {
+        _isFinished = true;
+    }
+
     public void CheckIngredient(int index)
     {
         switch (index)
@@ -516,10 +542,85 @@ public class GameManager : MonoBehaviour
             case 7:
                 currentSituation._isSpiceFour = 1;
                 break;
-            default:
+            default: //조리한 재료들이 올라올 경우의 분기
                 Debug.Log("재료 인덱싱 오류");
                 break;
         }
+    }
 
+    // 클리어 여부 판정
+    public bool CheckCorrect(int orderindex)
+    {
+        if (currentSituation._isGrassOne != answerArray[orderindex]._isGrassOne) //현재 주문의 Grass1 플래그가 정답의 Grass1 플래그와 다를 경우
+        {
+            if (answerArray[orderindex]._isGrassOne != 0) //0(상관없음)의 경우는 배제
+            {
+                return false;
+            }
+        }
+        if (currentSituation._isGrassTwo != answerArray[orderindex]._isGrassTwo) //현재 주문의 Grass2 플래그가 정답의 Grass2 플래그와 다를 경우
+        {
+            if (answerArray[orderindex]._isGrassTwo != 0) //0(상관없음)의 경우는 배제
+            {
+                return false;
+            }
+        }
+        if (currentSituation._isGrassThree != answerArray[orderindex]._isGrassThree) //현재 주문의 Grass3 플래그가 정답의 Grass3 플래그와 다를 경우
+        {
+            if (answerArray[orderindex]._isGrassThree != 0) //0(상관없음)의 경우는 배제
+            {
+                return false;
+            }
+        }
+        if (currentSituation._isSpiceOne != answerArray[orderindex]._isSpiceOne) //현재 주문의 Spice1 플래그가 정답의 Spice1 플래그와 다를 경우
+        {
+            if (answerArray[orderindex]._isSpiceOne != 0) //0(상관없음)의 경우는 배제
+            {
+                return false;
+            }
+        }
+        if (currentSituation._isSpiceTwo != answerArray[orderindex]._isSpiceTwo) //현재 주문의 Spice2 플래그가 정답의 Spice2 플래그와 다를 경우
+        {
+            if (answerArray[orderindex]._isSpiceTwo != 0) //0(상관없음)의 경우는 배제
+            {
+                return false;
+            }
+        }
+        if (currentSituation._isSpiceThree != answerArray[orderindex]._isSpiceThree) //현재 주문의 Spice3 플래그가 정답의 Spice3 플래그와 다를 경우
+        {
+            if (answerArray[orderindex]._isSpiceThree != 0) //0(상관없음)의 경우는 배제
+            {
+                return false;
+            }
+        }
+        if (currentSituation._isSpiceFour != answerArray[orderindex]._isSpiceFour) //현재 주문의 Spice4 플래그가 정답의 Spice4 플래그와 다를 경우
+        {
+            if (answerArray[orderindex]._isSpiceFour != 0) //0(상관없음)의 경우는 배제
+            {
+                return false;
+            }
+        }
+        if (currentSituation._isToolOne != answerArray[orderindex]._isToolOne) //현재 주문의 Tool1 플래그가 정답의 Tool1 플래그와 다를 경우
+        {
+            if (answerArray[orderindex]._isToolOne != 0) //0(상관없음)의 경우는 배제
+            {
+                return false;
+            }
+        }
+        if (currentSituation._isToolTwo != answerArray[orderindex]._isToolTwo) //현재 주문의 Tool2 플래그가 정답의 Tool2 플래그와 다를 경우
+        {
+            if (answerArray[orderindex]._isToolTwo != 0) //0(상관없음)의 경우는 배제
+            {
+                return false;
+            }
+        }
+        if (currentSituation._isToolThree != answerArray[orderindex]._isToolThree) //현재 주문의 Tool3 플래그가 정답의 Tool3 플래그와 다를 경우
+        {
+            if (answerArray[orderindex]._isToolThree != 0) //0(상관없음)의 경우는 배제
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

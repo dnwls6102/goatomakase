@@ -378,6 +378,7 @@ public class GameManager : MonoBehaviour
     //private bool _isVeryangry;
     void Awake()
     {
+        gm = this;
         MaxTime = GameTime;
         orderArray = new string[] {
             "안녕하세요, 샐러드 하나 주세요! 소스는 필요없어요.", //0번

@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     public Text orderText;
     public bool _isFinished = false; // 요리를 완성했는지 못했는지 판단하는 플래그
     public bool _isCorrect = false; // 완성한 요리가 정답인지 아닌지 판단하는 플래그
+    public float _timeLimit = 99f; //손님 한명 당 제한시간
 
     public Board Doma; //도마
     //public Board Fryer; //튀김기
@@ -393,7 +394,9 @@ public class GameManager : MonoBehaviour
              "내가 만든 퍼즐은 늘 달콤하니까.",
              "Whatever you want.",
               };
-        answerArray = new List<clearInfo>() { Answer1, Answer2, Answer3, Answer4, Answer5, Answer6 };
+        answerArray = new List<clearInfo>() { Answer1, Answer2, Answer3, Answer4, Answer5, Answer6,
+        Answer7, Answer8, Answer9, Answer10, Answer11, Answer12, Answer13, Answer14, Answer15, Answer16, Answer17,
+        Answer18, Answer19, Answer20, Answer21, Answer22, Answer23 };
         //repeatArray = new bool[] { false, false, false, false, false, false };
         //indexStack = new Stack<int>();
     }
@@ -404,17 +407,19 @@ public class GameManager : MonoBehaviour
         if (_isOrdering == false) //주문이 없는 경우 : 주문 받기
         {
 
-            orderIndex = Random.Range(0, 5); //어떤 주문을 할지 난수 생성 (temp = Random.Range(0, 22))
-                                             // do
-                                             // { //cuisineArray의 인덱스가 될 난수를 먼저 생성시킨 후 true인지 false인지 조건 판단
-                                             //     temp = Random.Range(0, 5); //현재 구현하는 요리의 갯수 : 6개
-                                             // } while (repeatArray[temp] == true); //중복되어 생성된 경우 다시 난수 생성시키기
+            orderIndex = Random.Range(0, 22); //어떤 주문을 할지 난수 생성 (temp = Random.Range(0, 22))
+                                              // do
+                                              // { //cuisineArray의 인덱스가 될 난수를 먼저 생성시킨 후 true인지 false인지 조건 판단
+                                              //     temp = Random.Range(0, 5); //현재 구현하는 요리의 갯수 : 6개
+                                              // } while (repeatArray[temp] == true); //중복되어 생성된 경우 다시 난수 생성시키기
 
             //repeatArray[temp] = true; // 난수 index의 요리를 true로 설정
             //indexStack.Push(temp);
             _isOrdering = true;
             orderText.text = orderArray[orderIndex];
+            _timeLimit = 5.0f;
         }
+
 
         //요리하기 : 유저가 조리기구로 드래그한 재료들이 어떤 재료인지 파악 후 currentSituation변수의 플래그 변경하기
         //도마 - 냄비 - 믹서기 - 튀김기 순으로 체크 -> 냄비 / 믹서기 / 튀김기 사용 여부는 각자 script에서 판정.
@@ -470,15 +475,19 @@ public class GameManager : MonoBehaviour
                 GameTime -= 1.0f;
                 _isOrdering = false;
             }
+            //도마 위 치우기
             _isFinished = false; //완성 여부 플래그의 초기화
         }
 
-
-
-
-
         GameTime -= Time.deltaTime;
         CheckTime();
+        _timeLimit -= Time.deltaTime;
+        if (_timeLimit < 0)
+        {
+            Debug.Log("손님 시간 초과");
+            //도마 위 치우기
+            _isOrdering = false;
+        }
         if (GameTime < 0) //게임 오버 여부 : 코루틴으로 만들기(시간되면)
         {
             Debug.Log("Time Over");

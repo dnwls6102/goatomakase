@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     //public int cuisine_num = 0;
     public bool _isOrdering = false; // 주문을 받는 중인지 아닌지 판단하는 플래그
     public Text orderText;
+    public Text reactionText;
+    public GameObject reactionBallon;
     public bool _isFinished = false; // 요리를 완성했는지 못했는지 판단하는 플래그
     public bool _isCorrect = false; // 완성한 요리가 정답인지 아닌지 판단하는 플래그
     public float _timeLimit = 99f; //손님 한명 당 제한시간
@@ -364,7 +366,9 @@ public class GameManager : MonoBehaviour
     };
     private int temp; //재료의 인덱스를 확인하는 변수
     private int orderIndex; //주문 index를 저장하는 변수
-
+    private int reactionIndex; //리액션 index를 저장하는 변수
+    private float reactionTime;
+    private float timer;
     void Awake()
     {
         MaxTime = GameTime;
@@ -397,6 +401,11 @@ public class GameManager : MonoBehaviour
         answerArray = new List<clearInfo>() { Answer1, Answer2, Answer3, Answer4, Answer5, Answer6,
         Answer7, Answer8, Answer9, Answer10, Answer11, Answer12, Answer13, Answer14, Answer15, Answer16, Answer17,
         Answer18, Answer19, Answer20, Answer21, Answer22, Answer23 };
+        goodReactionArray = new string[] { "GOAT.", "감사합니다!", "This is what I want.", "다음에 또 올게요!", "번창하세요~" };
+        badReactionArray = new string[] { "아…", "맛있네요..(표정을 구기며)", "지금 이걸 저 먹으라고 주는 건가요?", "너나 먹어!", "This is not what I want." };
+        reactionTime = 1.5f;
+        timer = 0.0f;
+        reactionBallon.SetActive(false);
         //repeatArray = new bool[] { false, false, false, false, false, false };
         //indexStack = new Stack<int>();
     }
@@ -406,15 +415,7 @@ public class GameManager : MonoBehaviour
     {
         if (_isOrdering == false) //주문이 없는 경우 : 주문 받기
         {
-
             orderIndex = Random.Range(0, 22); //어떤 주문을 할지 난수 생성 (temp = Random.Range(0, 22))
-                                              // do
-                                              // { //cuisineArray의 인덱스가 될 난수를 먼저 생성시킨 후 true인지 false인지 조건 판단
-                                              //     temp = Random.Range(0, 5); //현재 구현하는 요리의 갯수 : 6개
-                                              // } while (repeatArray[temp] == true); //중복되어 생성된 경우 다시 난수 생성시키기
-
-            //repeatArray[temp] = true; // 난수 index의 요리를 true로 설정
-            //indexStack.Push(temp);
             _isOrdering = true;
             orderText.text = orderArray[orderIndex];
             _timeLimit = 5.0f;
@@ -461,6 +462,10 @@ public class GameManager : MonoBehaviour
             if (_isCorrect) //정답일 경우
             {
                 Debug.Log("정답");
+                reactionIndex = Random.Range(0, 4);
+                reactionBallon.SetActive(true);
+                reactionText.text = goodReactionArray[reactionIndex];
+                StartCoroutine(Waiting());
                 GameTime += 1.0f;
                 if (GameTime > MaxTime)
                 {
@@ -472,6 +477,10 @@ public class GameManager : MonoBehaviour
             else //오답일 경우
             {
                 Debug.Log("오답");
+                reactionIndex = Random.Range(0, 4);
+                reactionBallon.SetActive(true);
+                reactionText.text = badReactionArray[reactionIndex];
+                StartCoroutine(Waiting());
                 GameTime -= 1.0f;
                 _isOrdering = false;
             }
@@ -522,6 +531,12 @@ public class GameManager : MonoBehaviour
     public void FinishDebug()
     {
         _isFinished = true;
+    }
+
+    IEnumerator Waiting()
+    {
+        yield return new WaitForSeconds(1.0f);
+        reactionBallon.SetActive(false);
     }
 
     public void CheckIngredient(int index)

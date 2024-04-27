@@ -149,6 +149,9 @@ MonoBehaviour:
   defualt_sprite: {fileID: 21300000, guid: 31c8492b4d5b8ad459bab6b63d2637ba, type: 3}
   cooking_sprite: {fileID: 21300000, guid: 2c5193b0de930d94ebd792a2995a6f4a, type: 3}
   cooked_sprite: {fileID: 0}
+  boil_fail: {fileID: 0}
+  mixed_fail: {fileID: 0}
+  spritelist: []
 --- !u!114 &3940563313928511776
 MonoBehaviour:
   m_ObjectHideFlags: 0

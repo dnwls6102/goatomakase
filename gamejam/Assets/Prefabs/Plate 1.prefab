@@ -170,10 +170,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defualt_sprite:
-  - {fileID: 2747690628134850419, guid: b670ab75dde984907b8570040daa08c5, type: 3}
-  - {fileID: 3625043607559282579, guid: 19fb86013d8c24d6cb8410c0aadf30fa, type: 3}
-  - {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  - {fileID: 21300000, guid: 39b81fd9b8a71904580932c08ffcb021, type: 3}
-  - {fileID: 21300000, guid: 2fcd6f9e0e4f99845934401b36649995, type: 3}
-  - {fileID: 21300000, guid: f7def0f8cee9c0e4689079b97d8a17b3, type: 3}
+  - {fileID: 21300000, guid: 7f5c7652ab324564398f0374b014672e, type: 3}
+  - {fileID: 21300000, guid: 7f5c7652ab324564398f0374b014672e, type: 3}
+  - {fileID: 21300000, guid: 7f5c7652ab324564398f0374b014672e, type: 3}
+  - {fileID: 21300000, guid: 523fd656089e1b54787bb2665cfd4375, type: 3}
+  - {fileID: 21300000, guid: 523fd656089e1b54787bb2665cfd4375, type: 3}
+  - {fileID: 21300000, guid: 523fd656089e1b54787bb2665cfd4375, type: 3}
   - {fileID: 21300000, guid: 07058b0d3d1239943bace99193371507, type: 3}

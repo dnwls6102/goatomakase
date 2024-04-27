@@ -26,8 +26,15 @@ public class GameManager : MonoBehaviour
     //public int cuisine_num = 0;
     public bool _isOrdering = false; // 주문을 받는 중인지 아닌지 판단하는 플래그
     public Text orderText;
+    public Text reactionText;
+    public GameObject reactionBallon;
     public bool _isFinished = false; // 요리를 완성했는지 못했는지 판단하는 플래그
     public bool _isCorrect = false; // 완성한 요리가 정답인지 아닌지 판단하는 플래그
+    public float _timeLimit = 99f; //손님 한명 당 제한시간
+    public bool toolFlag = false; //조리기 사용 여부 판정 플래그
+    public FaceChanger goatFace; //염소 얼굴 변환기 받아오기
+    public int score = 0;
+
 
     public Board Doma; //도마
     //public Board Fryer; //튀김기
@@ -44,7 +51,7 @@ public class GameManager : MonoBehaviour
     private string[] goodReactionArray; //좋은 반응들을 저장하는 배열
     private string[] badReactionArray; //나쁜 반응들을 저장하는 배열
     private List<clearInfo> answerArray; //주문에 대한 정답을 저장하는 배열
-    private bool toolFlag = false; //조리기는 한번에 한번씩만 사용
+
     private clearInfo currentSituation = new clearInfo()
     {
         _isGrassOne = -1,
@@ -363,7 +370,12 @@ public class GameManager : MonoBehaviour
     };
     private int temp; //재료의 인덱스를 확인하는 변수
     private int orderIndex; //주문 index를 저장하는 변수
-
+    private int reactionIndex; //리액션 index를 저장하는 변수
+    private int faceIndex; //염소 얼굴 index를 저장하는 변수
+    private float reactionTime;
+    private float timer;
+    //private bool _isAngry;
+    //private bool _isVeryangry;
     void Awake()
     {
         MaxTime = GameTime;
@@ -393,7 +405,16 @@ public class GameManager : MonoBehaviour
              "내가 만든 퍼즐은 늘 달콤하니까.",
              "Whatever you want.",
               };
-        answerArray = new List<clearInfo>() { Answer1, Answer2, Answer3, Answer4, Answer5, Answer6 };
+        answerArray = new List<clearInfo>() { Answer1, Answer2, Answer3, Answer4, Answer5, Answer6,
+        Answer7, Answer8, Answer9, Answer10, Answer11, Answer12, Answer13, Answer14, Answer15, Answer16, Answer17,
+        Answer18, Answer19, Answer20, Answer21, Answer22, Answer23 };
+        goodReactionArray = new string[] { "GOAT.", "감사합니다!", "This is what I want.", "다음에 또 올게요!", "번창하세요~" };
+        badReactionArray = new string[] { "아…", "맛있네요..(표정을 구기며)", "지금 이걸 저 먹으라고 주는 건가요?", "너나 먹어!", "This is not what I want." };
+        reactionTime = 1.5f;
+        timer = 0.0f;
+        reactionBallon.SetActive(false);
+        //_isAngry = false;
+
         //repeatArray = new bool[] { false, false, false, false, false, false };
         //indexStack = new Stack<int>();
     }
@@ -403,17 +424,12 @@ public class GameManager : MonoBehaviour
     {
         if (_isOrdering == false) //주문이 없는 경우 : 주문 받기
         {
-
-            orderIndex = Random.Range(0, 5); //어떤 주문을 할지 난수 생성 (temp = Random.Range(0, 22))
-                                             // do
-                                             // { //cuisineArray의 인덱스가 될 난수를 먼저 생성시킨 후 true인지 false인지 조건 판단
-                                             //     temp = Random.Range(0, 5); //현재 구현하는 요리의 갯수 : 6개
-                                             // } while (repeatArray[temp] == true); //중복되어 생성된 경우 다시 난수 생성시키기
-
-            //repeatArray[temp] = true; // 난수 index의 요리를 true로 설정
-            //indexStack.Push(temp);
+            orderIndex = Random.Range(0, 23); //어떤 주문을 할지 난수 생성 (temp = Random.Range(0, 22))
+            faceIndex = Random.Range(0, 3); //염소 스프라이트 추가되면 (0,4)로 수정해야함.
             _isOrdering = true;
             orderText.text = orderArray[orderIndex];
+            goatFace.SetDefaultSprite(faceIndex); //염소 기본 얼굴 설정
+            _timeLimit = 5.0f;
         }
 
         //요리하기 : 유저가 조리기구로 드래그한 재료들이 어떤 재료인지 파악 후 currentSituation변수의 플래그 변경하기
@@ -431,6 +447,7 @@ public class GameManager : MonoBehaviour
         //     temp = Naembi.ingredient_list[^1].index; //냄비 ingredient_list의 마지막 원소의 index를 뽑아옴
         //     Debug.Log(temp);
         //     CheckIngredient(temp);
+        //     냄비 사용시 ToolFlag 활성화시키기
         // }
         // if (Blender.ingredient_list.Count != 0) //믹서기의 ingredient_list에 재료가 있을 경우
         // {
@@ -438,6 +455,7 @@ public class GameManager : MonoBehaviour
         //     temp = Blender.ingredient_list[^1].index; //믹서기의 ingredient_list의 마지막 원소의 index를 뽑아옴
         //     Debug.Log(temp);
         //     CheckIngredient(temp);
+        //     믹서기 사용시 ToolFlag 활성화시키기
         // }
         // if (Fryer.ingredient_list.Count != 0) //튀김기의 ingredient_list에 재료가 있을 경우
         // {
@@ -445,6 +463,7 @@ public class GameManager : MonoBehaviour
         //     temp = Fryer.ingredient_list[^1].index; //튀김기의 ingredient_list의 마지막 원소의 index를 뽑아옴
         //     Debug.Log(temp);
         //     CheckIngredient(temp);
+        //     튀김기 사용시 FryerFlag 활성화시키기
         // }
 
         // 요리한 재료들 합친 후 완성본 보여주기
@@ -456,33 +475,70 @@ public class GameManager : MonoBehaviour
             if (_isCorrect) //정답일 경우
             {
                 Debug.Log("정답");
+                //goatFace.SetDefaultSprite(faceIndex);
+                //_isAngry = false;
+                reactionIndex = Random.Range(0, 4);
+                reactionBallon.SetActive(true);
+                reactionText.text = goodReactionArray[reactionIndex];
+                StartCoroutine(Waiting());
                 GameTime += 1.0f;
                 if (GameTime > MaxTime)
                 {
                     MaxTime = GameTime;
                 }
+                score += 1;
                 _isOrdering = false;
                 _isCorrect = false;
             }
             else //오답일 경우
             {
                 Debug.Log("오답");
+                //goatFace.ChangeToVeryangrySprite(faceIndex);
+                //_isAngry = false;
+                reactionIndex = Random.Range(0, 4);
+                reactionBallon.SetActive(true);
+                reactionText.text = badReactionArray[reactionIndex];
+                StartCoroutine(Waiting());
                 GameTime -= 1.0f;
                 _isOrdering = false;
             }
+            //도마 위 치우기
             _isFinished = false; //완성 여부 플래그의 초기화
+            //현재 상황 초기화
+            ResetCurrentSituation();
         }
-
-
-
-
 
         GameTime -= Time.deltaTime;
         CheckTime();
+        _timeLimit -= Time.deltaTime;
+        // if (_timeLimit < 10 && _timeLimit >= 5 && _isAngry == false)
+        // {
+        //     goatFace.ChangeToAngrySprite(faceIndex);
+        //     _isAngry = true;
+        // }
+
+
+        if (_timeLimit < 0)
+        {
+            Debug.Log("손님 시간 초과");
+            //손님 리액션
+            //_isAngry = false;
+            reactionIndex = Random.Range(0, 4);
+            reactionBallon.SetActive(true);
+            reactionText.text = badReactionArray[reactionIndex];
+            //StartCoroutine(AngryWaiting());
+            StartCoroutine(Waiting());
+            //도마 위 치우기
+            _isOrdering = false;
+            //현재 상황 초기화
+            ResetCurrentSituation();
+
+        }
         if (GameTime < 0) //게임 오버 여부 : 코루틴으로 만들기(시간되면)
         {
             Debug.Log("Time Over");
             Time.timeScale = 0f;
+            Debug.Log(score);
         }
     }
 
@@ -515,35 +571,63 @@ public class GameManager : MonoBehaviour
         _isFinished = true;
     }
 
+    IEnumerator Waiting()
+    {
+        //goatFace.SetDefaultSprite(faceIndex);
+        yield return new WaitForSeconds(1.0f);
+        reactionBallon.SetActive(false);
+    }
+    IEnumerator AngryWaiting()
+    {
+        Debug.Log("화남");
+        yield return new WaitForSeconds(1.0f);
+        goatFace.ChangeToVeryangrySprite(faceIndex);
+    }
+
     public void CheckIngredient(int index)
     {
         switch (index)
         {
-            case 1:
+            case 0:
                 currentSituation._isGrassOne = 1;
                 break;
-            case 2:
+            case 1:
                 currentSituation._isGrassTwo = 1;
                 break;
-            case 3:
+            case 2:
                 currentSituation._isGrassThree = 1;
                 break;
-            case 4:
+            case 3:
                 currentSituation._isSpiceOne = 1;
                 break;
-            case 5:
+            case 4:
                 currentSituation._isSpiceTwo = 1;
                 break;
-            case 6:
+            case 5:
                 currentSituation._isSpiceThree = 1;
                 break;
-            case 7:
+            case 6:
                 currentSituation._isSpiceFour = 1;
                 break;
-            default: //조리한 재료들이 올라올 경우의 분기
-                Debug.Log("재료 인덱싱 오류");
+            default: //접시(=조리한 재료)가 올라올때 실행될 분기
+                Debug.Log("접시(혹은 조리한 재료)가 올라온 상태");
                 break;
         }
+    }
+
+    public void ResetCurrentSituation()
+    {
+        Debug.Log("현재 상황 초기화");
+        currentSituation._isGrassOne = -1;
+        currentSituation._isGrassTwo = -1;
+        currentSituation._isGrassThree = -1;
+        currentSituation._isSpiceOne = -1;
+        currentSituation._isSpiceTwo = -1;
+        currentSituation._isSpiceThree = -1;
+        currentSituation._isSpiceFour = -1;
+        currentSituation._isToolOne = -1;
+        currentSituation._isToolTwo = -1;
+        currentSituation._isToolThree = -1;
     }
 
     // 클리어 여부 판정
@@ -604,6 +688,7 @@ public class GameManager : MonoBehaviour
             {
                 return false;
             }
+
         }
         if (currentSituation._isToolTwo != answerArray[orderindex]._isToolTwo) //현재 주문의 Tool2 플래그가 정답의 Tool2 플래그와 다를 경우
         {

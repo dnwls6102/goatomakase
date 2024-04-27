@@ -420,7 +420,7 @@ public class GameManager : MonoBehaviour
         //도마 - 냄비 - 믹서기 - 튀김기 순으로 체크 -> 냄비 / 믹서기 / 튀김기 사용 여부는 각자 script에서 판정.
         if (Doma.ingredient_list.Count != 0)
         {
-            temp = Doma.ingredient_list[^1].index;
+            temp = Doma.ingredient_list[^1].idx;
             Debug.Log(temp);
             CheckIngredient(temp); //재료 플래그 함수
         }

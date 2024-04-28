@@ -380,6 +380,19 @@ public class GameManager : MonoBehaviour
         _isToolTwo = 0, //믹서기가 필수인지 아닌지
         _isToolThree = 0, //튀김기가 필수인지 아닌지
     };
+    private clearInfo Answer24 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
+    {
+        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
+        _isGrassTwo = 1, //민들레가 필수인지 아닌지
+        _isGrassThree = 0, //고추가 필수인지 아닌지
+        _isSpiceOne = 0, //간장이 필수인지 아닌지
+        _isSpiceTwo = 0, //된장이 필수인지 아닌지
+        _isSpiceThree = 0, //소금이 필수인지 아닌지
+        _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
+        _isToolOne = 0, //냄비가 필수인지 아닌지
+        _isToolTwo = 0, //믹서기가 필수인지 아닌지
+        _isToolThree = 0, //튀김기가 필수인지 아닌지
+    };
     private int temp; //재료의 인덱스를 확인하는 변수
     private int orderIndex; //주문 index를 저장하는 변수
     private int reactionIndex; //리액션 index를 저장하는 변수
@@ -414,10 +427,11 @@ public class GameManager : MonoBehaviour
              "핫도그 하나요!",//21번,
              "내가 만든 퍼즐은 늘 달콤하니까.",
              "Whatever you want.",
+             "국화과의 여러해살이풀. 원줄기는 없고 이른 봄에 뿌리에서 깃 모양으로 깊이 갈라진 잎이 배게 난다.",
               };
         answerArray = new List<clearInfo>() { Answer1, Answer2, Answer3, Answer4, Answer5, Answer6,
         Answer7, Answer8, Answer9, Answer10, Answer11, Answer12, Answer13, Answer14, Answer15, Answer16, Answer17,
-        Answer18, Answer19, Answer20, Answer21, Answer22, Answer23 };
+        Answer18, Answer19, Answer20, Answer21, Answer22, Answer23, Answer24 };
         goodReactionArray = new string[] { "GOAT.", "감사합니다!", "This is what I want.", "다음에 또 올게요!", "번창하세요~" };
         badReactionArray = new string[] { "아…", "맛있네요..(표정을 구기며)", "지금 이걸 저 먹으라고 주는 건가요?", "너나 먹어!", "This is not what I want." };
         // reactionBallon.SetActive(false);
@@ -432,7 +446,7 @@ public class GameManager : MonoBehaviour
     {
         if (_isOrdering == false) //주문이 없는 경우 : 주문 받기
         {
-            orderIndex = Random.Range(1, 24); //어떤 주문을 할지 난수 생성 (temp = Random.Range(0, 22)) -> 1~24로 수정, answerArray 와 
+            orderIndex = Random.Range(0, 25); //어떤 주문을 할지 난수 생성 (temp = Random.Range(0, 22)) -> 1~24로 수정, answerArray 와 
             faceIndex = Random.Range(0, 5); //염소 스프라이트 추가되면 (0,5)로 수정해야함.
             _isOrdering = true;
             orderText.text = orderArray[orderIndex];

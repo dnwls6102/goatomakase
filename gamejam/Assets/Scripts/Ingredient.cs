@@ -61,6 +61,15 @@ public class Ingredient : MonoBehaviour
             if (dragable)
             {
                 pre_position = transform.position;
+                if(cooker != null && cooker.name != "Fryer" && !in_board)
+                {
+                    spriteRenderer.enabled = true;
+                    if (state == Ingredient_state.BOILED)
+                        spriteChanger.ChangeToInBoil();
+                    else
+                        spriteChanger.ChangeToInMixed();
+                    transform.localScale = Vector3.one * 0.5f;
+                }
             }
         }
 
@@ -153,17 +162,22 @@ public class Ingredient : MonoBehaviour
             if (dragable)
             {
                 //보드에 추가
-                if (hit_board.collider != null && !in_board)
+                if (hit_board.collider != null && !in_board )
                 {
-                    in_board = true;
-                    cooked = true;
+                    
 
                     if
                     (hit_board.collider.gameObject.GetComponent<Board>().AddIngredient(this) == false)
                     {
+                        
                         transform.position = pre_position;
+                        if(state == Ingredient_state.BOILED || state == Ingredient_state.MIXED)
+                        spriteRenderer.enabled = false;
                         return;
                     }
+
+                    in_board = true;
+                    cooked = true;
                     cooker.cooker_SpriteChanger.ChangeToDefualtSprite();
                     cooker.busy = false;
                     if (cooker.GetComponent<TimerUI>() != null)
@@ -182,7 +196,7 @@ public class Ingredient : MonoBehaviour
                                     hit_cooker.collider.gameObject.GetComponent<Cooker>().Cook(ingredient);
                                     ingredient.dragable = false;
                                 }*/
-                else if (hit_tray.collider != null) // 트레이에 추가안함. fail임
+                else if (hit_tray.collider != null && in_board) // 트레이에 추가안함. fail임
                 {
                     if (idx >= 7)
                     {
@@ -200,8 +214,23 @@ public class Ingredient : MonoBehaviour
                 }
                 else if (hit_trash_can.collider != null)
                 {
-                    hit_trash_can.collider.GetComponent<TrashCan>().Trashing();
+                    if(in_board)
 
+                        hit_trash_can.collider.GetComponent<TrashCan>().Trashing();
+                    else
+                    {
+                        cooker.cooker_SpriteChanger.ChangeToDefualtSprite();
+                        cooker.busy = false;
+                        Destroy(gameObject);
+                    }
+
+                }
+                else
+                {
+                    
+                    transform.position = pre_position;
+                    if(!in_board && state != Ingredient_state.FRESH )
+                        spriteRenderer.enabled = false;
                 }
             }
 

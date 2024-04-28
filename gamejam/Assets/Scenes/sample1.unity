@@ -429,6 +429,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 8a5d50e3f27197141aab023d23b79414, type: 3}
     - target: {fileID: 2788318597535610630, guid: bd12f7b2fbebb644992a1ea75bb6111f, type: 3}
+      propertyPath: m_Size.x
+      value: 1.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 2788318597535610630, guid: bd12f7b2fbebb644992a1ea75bb6111f, type: 3}
+      propertyPath: m_Size.y
+      value: 3.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2788318597535610630, guid: bd12f7b2fbebb644992a1ea75bb6111f, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 2788318597535610630, guid: bd12f7b2fbebb644992a1ea75bb6111f, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 1.79
       objectReference: {fileID: 0}
@@ -922,6 +934,8 @@ MonoBehaviour:
   cooked_sprite: {fileID: 0}
   boil_fail: {fileID: 0}
   mixed_fail: {fileID: 0}
+  in_boil: {fileID: 0}
+  in_mixer: {fileID: 0}
   spritelist: []
 --- !u!114 &402434677
 MonoBehaviour:
@@ -3705,7 +3719,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.41, y: 2.98}
+  m_Size: {x: 1.72, y: 2.98}
   m_EdgeRadius: 0
 --- !u!4 &1225119737948785178
 Transform:
@@ -3955,6 +3969,8 @@ MonoBehaviour:
   cooked_sprite: {fileID: 21300000, guid: b37078eb2d4edc5459e53579035de513, type: 3}
   boil_fail: {fileID: 0}
   mixed_fail: {fileID: 0}
+  in_boil: {fileID: 0}
+  in_mixer: {fileID: 0}
   spritelist: []
 --- !u!212 &2278782621123466705
 SpriteRenderer:
@@ -4373,6 +4389,8 @@ MonoBehaviour:
   cooked_sprite: {fileID: 21300000, guid: 3deea94751935fe499cbf5fdd00a2582, type: 3}
   boil_fail: {fileID: 0}
   mixed_fail: {fileID: 0}
+  in_boil: {fileID: 0}
+  in_mixer: {fileID: 0}
   spritelist: []
 --- !u!1001 &4690957559038836898
 PrefabInstance:
@@ -4440,7 +4458,7 @@ Transform:
   m_GameObject: {fileID: 236169101995630637}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.804, y: -0.623, z: 0.05212}
+  m_LocalPosition: {x: -1.843, y: -0.623, z: 0.05212}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1.6276}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4510,6 +4528,8 @@ MonoBehaviour:
   cooked_sprite: {fileID: 21300000, guid: d42c582f25a61ed4aa38fe5a19001b5d, type: 3}
   boil_fail: {fileID: 0}
   mixed_fail: {fileID: 0}
+  in_boil: {fileID: 0}
+  in_mixer: {fileID: 0}
   spritelist: []
 --- !u!61 &5504452194222905994
 BoxCollider2D:
@@ -4608,6 +4628,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pot
       objectReference: {fileID: 0}
+    - target: {fileID: 8517102843209023844, guid: 444f7203b82c44a4390cfae0c94d98e3, type: 3}
+      propertyPath: m_Size.x
+      value: 3.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8517102843209023844, guid: 444f7203b82c44a4390cfae0c94d98e3, type: 3}
+      propertyPath: m_Size.y
+      value: 2.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 8517102843209023844, guid: 444f7203b82c44a4390cfae0c94d98e3, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4673,6 +4705,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1120368563}
     m_Modifications:
+    - target: {fileID: 2788318597535610630, guid: bd12f7b2fbebb644992a1ea75bb6111f, type: 3}
+      propertyPath: m_Size.x
+      value: 2.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 2788318597535610630, guid: bd12f7b2fbebb644992a1ea75bb6111f, type: 3}
+      propertyPath: m_Size.y
+      value: 2.51
+      objectReference: {fileID: 0}
     - target: {fileID: 4887623420816931069, guid: bd12f7b2fbebb644992a1ea75bb6111f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.13

@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager gm;
     public float MaxTime;
-    public float GameTime = 5.0f;
+    public float GameTime = 60.0f;
     public Slider TimeBar;
     //public int cuisine_num = 0;
     public bool _isOrdering = false; // 주문을 받는 중인지 아닌지 판단하는 플래그
@@ -500,7 +500,7 @@ public class GameManager : MonoBehaviour
                 reactionText.text = goodReactionArray[reactionIndex];
                 StartCoroutine(Waiting());
 
-                GameTime += 1.0f;
+                GameTime += 5.0f;
                 if (GameTime > MaxTime)
                 {
                     MaxTime = GameTime;
@@ -520,7 +520,7 @@ public class GameManager : MonoBehaviour
                 reactionText.text = badReactionArray[reactionIndex];
                 StartCoroutine(Waiting());
 
-                GameTime -= 1.0f;
+                GameTime -= 5.0f;
                 _isOrdering = false;
             }
             //도마 위 치우기
@@ -565,7 +565,8 @@ public class GameManager : MonoBehaviour
             Debug.Log(score);
 
             GameUI.SetActive(false);
-            if (score >= clear_score) {
+            if (score >= clear_score)
+            {
                 GameClear.SetActive(true);
             }
             else

@@ -25,6 +25,8 @@ public class SoundManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        DontDestroyOnLoad(gameObject);
     }
 
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)

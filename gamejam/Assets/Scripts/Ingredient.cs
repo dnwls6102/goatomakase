@@ -221,6 +221,7 @@ public class Ingredient : MonoBehaviour
                         cooker.cooker_SpriteChanger.ChangeToDefualtSprite();
                         cooker.busy = false;
                         Destroy(gameObject);
+                        BtnSound.instance.PlayTrashSound();
                     }
 
                 }

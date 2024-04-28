@@ -9,6 +9,7 @@ public class BtnSound : MonoBehaviour
     public AudioClip btnSound;
     public AudioClip Fail1;
     public AudioClip Nice1;
+    public AudioClip trash;
 
     // Start is called before the first frame update
     void Awake()
@@ -30,6 +31,11 @@ public class BtnSound : MonoBehaviour
     public void PlayNiceSound()
     {
         audioSource.PlayOneShot(Nice1);
+    }
+
+    public void PlayTrashSound()
+    {
+        audioSource.PlayOneShot(trash);
     }
 
 }

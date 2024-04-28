@@ -36,11 +36,16 @@ public class GameManager : MonoBehaviour
     public float _timeLimit = 99f; //손님 한명 당 제한시간
     public bool toolFlag = false; //조리기 사용 여부 판정 플래그
     public FaceChanger goatFace; //염소 얼굴 변환기 받아오기
+    public GameObject gFaceObject;
     public int score = 0;
     public int clear_score = 7;
     public GameObject GameUI;
     public GameObject GameClear;
     public GameObject GameOver;
+    public GameObject orderObj;
+    public GameObject reactObj;
+    public GameObject[] AngryFaces;
+    public GameObject[] HappyFaces;
 
 
     public Board Doma; //도마
@@ -464,13 +469,11 @@ public class GameManager : MonoBehaviour
             if (_isCorrect) //정답일 경우
             {
                 Debug.Log("정답");
-                //goatFace.SetDefaultSprite(faceIndex);
-                //_isAngry = false;
-                reactionIndex = Random.Range(0, 4);
-                // reactionBallon.SetActive(true);
+                reactionIndex = Random.Range(0, 5);
                 orderText.text = "";
                 reactionText.text = goodReactionArray[reactionIndex];
-                StartCoroutine(Waiting());
+                goatFace.SetDefaultSprite(faceIndex);
+                StartCoroutine(ShowHappy(faceIndex, reactionIndex));
 
                 GameTime += 5.0f;
                 if (GameTime > MaxTime)
@@ -484,13 +487,10 @@ public class GameManager : MonoBehaviour
             else //오답일 경우
             {
                 Debug.Log("오답");
-                //goatFace.ChangeToVeryangrySprite(faceIndex);
-                //_isAngry = false;
-                reactionIndex = Random.Range(0, 4);
-                // reactionBallon.SetActive(true);
+                reactionIndex = Random.Range(0, 5);
                 orderText.text = "";
                 reactionText.text = badReactionArray[reactionIndex];
-                StartCoroutine(Waiting());
+                StartCoroutine(ShowAngry(faceIndex, reactionIndex));
 
                 GameTime -= 5.0f;
                 _isOrdering = false;
@@ -515,13 +515,12 @@ public class GameManager : MonoBehaviour
             Debug.Log("손님 시간 초과");
             //손님 리액션
             //_isAngry = false;
-            reactionIndex = Random.Range(0, 4);
+            reactionIndex = Random.Range(0, 5);
             // reactionBallon.SetActive(true);
             orderText.text = "";
 
             reactionText.text = badReactionArray[reactionIndex];
-            //StartCoroutine(AngryWaiting());
-            StartCoroutine(Waiting());
+            StartCoroutine(ShowAngry(faceIndex, reactionIndex));
 
             //도마 위 치우기
             _isOrdering = false;
@@ -574,19 +573,32 @@ public class GameManager : MonoBehaviour
         _isFinished = true;
     }
 
-    IEnumerator Waiting()
+    IEnumerator ShowHappy(int findex, int rindex)
     {
-        //goatFace.SetDefaultSprite(faceIndex);
-        yield return new WaitForSeconds(1.0f);
-        reactionText.text = "";
-        // reactionText.text = badReactionArray[reactionIndex];
-        //reactionBallon.SetActive(false);
+        gFaceObject.SetActive(false);
+        HappyFaces[findex].SetActive(true);
+        orderObj.SetActive(false);
+        reactObj.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        reactObj.SetActive(false);
+        orderObj.SetActive(true);
+        HappyFaces[findex].SetActive(false);
+        gFaceObject.SetActive(true);
     }
-    IEnumerator AngryWaiting()
+    IEnumerator ShowAngry(int findex, int rindex)
     {
-        Debug.Log("화남");
-        yield return new WaitForSeconds(1.0f);
-        goatFace.ChangeToVeryangrySprite(faceIndex);
+        Debug.Log("코루틴작동");
+        gFaceObject.SetActive(false);
+        AngryFaces[findex].SetActive(true);
+        orderObj.SetActive(false);
+        reactionText.text = badReactionArray[rindex];
+        reactObj.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        reactObj.SetActive(false);
+        orderObj.SetActive(true);
+        AngryFaces[findex].SetActive(false);
+        gFaceObject.SetActive(true);
+        Debug.Log("코루틴 작동종료");
     }
 
     public void CheckIngredient(int index)

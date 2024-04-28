@@ -429,7 +429,7 @@ public class GameManager : MonoBehaviour
         if (_isOrdering == false) //주문이 없는 경우 : 주문 받기
         {
             orderIndex = Random.Range(1, 24); //어떤 주문을 할지 난수 생성 (temp = Random.Range(0, 22)) -> 1~24로 수정, answerArray 와 
-            faceIndex = Random.Range(0, 3); //염소 스프라이트 추가되면 (0,4)로 수정해야함.
+            faceIndex = Random.Range(0, 5); //염소 스프라이트 추가되면 (0,5)로 수정해야함.
             _isOrdering = true;
             orderText.text = orderArray[orderIndex];
             goatFace.SetDefaultSprite(faceIndex); //염소 기본 얼굴 설정
@@ -445,7 +445,7 @@ public class GameManager : MonoBehaviour
             //CheckIngredient(temp); //재료 플래그 함수
             //2번 index부터 조사하여 ingredient 추가하기(그릇 제외)
             print(Doma.ingredient_list.Count);
-            for(int i=1;i<Doma.ingredient_list.Count;i++)
+            for (int i = 1; i < Doma.ingredient_list.Count; i++)
             {
                 print(Doma.ingredient_list[i].idx);
                 CheckIngredient(Doma.ingredient_list[i].idx);
@@ -707,7 +707,7 @@ public class GameManager : MonoBehaviour
         {
             if (answerArray[orderindex]._isSpiceFour != 0) //0(상관없음)의 경우는 배제
             {
-                print("배제" + currentSituation._isSpiceFour+ answerArray[orderindex]._isSpiceFour);
+                print("배제" + currentSituation._isSpiceFour + answerArray[orderindex]._isSpiceFour);
                 return false;
             }
         }

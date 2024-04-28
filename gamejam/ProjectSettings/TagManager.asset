@@ -15,7 +15,7 @@ TagManager:
   - Cooker
   - tray
   - trash
-  - 
+  - info
   - 
   - 
   - 
@@ -44,4 +44,7 @@ TagManager:
     locked: 0
   - name: WorkSpace
     uniqueID: 1123996329
+    locked: 0
+  - name: InfoSpace
+    uniqueID: 15245277
     locked: 0

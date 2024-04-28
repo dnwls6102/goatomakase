@@ -105,6 +105,7 @@ public class Ingredient : MonoBehaviour
                 Ingredient ingredient = pool.Get(idx).GetComponent<Ingredient>();
                 ingredient.transform.position = mouse_position;
                 ingredient.spriteRenderer.enabled = true;
+                Debug.Log("작동중");
                 if (hit_board.collider.gameObject.GetComponent<Board>().AddIngredient(ingredient) == false)
                 {
                     Destroy(ingredient.gameObject);
@@ -165,7 +166,7 @@ public class Ingredient : MonoBehaviour
                     }
                     cooker.cooker_SpriteChanger.ChangeToDefualtSprite();
                     cooker.busy = false;
-                    if(cooker.GetComponent<TimerUI>() != null)
+                    if (cooker.GetComponent<TimerUI>() != null)
                     {
                         cooker.GetComponent<TimerUI>().textDefualt();
                     }
@@ -183,7 +184,7 @@ public class Ingredient : MonoBehaviour
                                 }*/
                 else if (hit_tray.collider != null) // 트레이에 추가안함. fail임
                 {
-                    if( idx >=7)
+                    if (idx >= 7)
                     {
                         transform.position = hit_tray.transform.position;
                         GameManager.gm._isFinished = true;

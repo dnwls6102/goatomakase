@@ -444,9 +444,6 @@ public class GameManager : MonoBehaviour
         //도마 - 냄비 - 믹서기 - 튀김기 순으로 체크 -> 냄비 / 믹서기 / 튀김기 사용 여부는 각자 script에서 판정.
         if (Doma.ingredient_list.Count != 0)
         {
-            //temp = Doma.ingredient_list[^1].idx;
-            //Debug.Log(temp);
-            //CheckIngredient(temp); //재료 플래그 함수
             //2번 index부터 조사하여 ingredient 추가하기(그릇 제외)
             print(Doma.ingredient_list.Count);
             for (int i = 1; i < Doma.ingredient_list.Count; i++)
@@ -455,31 +452,6 @@ public class GameManager : MonoBehaviour
                 CheckIngredient(Doma.ingredient_list[i].idx);
             }
         }
-        //장비 사용 여부는 각 조리기 Script에서 판정하기
-        // if (Naembi.ingredient_list.Count != 0) //냄비의 ingredient_list에 재료가 있을 경우
-        // {
-        //     currentSituation._isToolOne = true; //냄비 사용 플래그 ON
-        //     temp = Naembi.ingredient_list[^1].index; //냄비 ingredient_list의 마지막 원소의 index를 뽑아옴
-        //     Debug.Log(temp);
-        //     CheckIngredient(temp);
-        //     냄비 사용시 ToolFlag 활성화시키기
-        // }
-        // if (Blender.ingredient_list.Count != 0) //믹서기의 ingredient_list에 재료가 있을 경우
-        // {
-        //     currentSituation._isToolTwo = true; //믹서기 사용 플래그 ON
-        //     temp = Blender.ingredient_list[^1].index; //믹서기의 ingredient_list의 마지막 원소의 index를 뽑아옴
-        //     Debug.Log(temp);
-        //     CheckIngredient(temp);
-        //     믹서기 사용시 ToolFlag 활성화시키기
-        // }
-        // if (Fryer.ingredient_list.Count != 0) //튀김기의 ingredient_list에 재료가 있을 경우
-        // {
-        //     currentSituation._isToolThree = true; // 튀김기 사용 플래그 ON
-        //     temp = Fryer.ingredient_list[^1].index; //튀김기의 ingredient_list의 마지막 원소의 index를 뽑아옴
-        //     Debug.Log(temp);
-        //     CheckIngredient(temp);
-        //     튀김기 사용시 FryerFlag 활성화시키기
-        // }
 
         // 요리한 재료들 합친 후 완성본 보여주기
 
@@ -532,11 +504,10 @@ public class GameManager : MonoBehaviour
         GameTime -= Time.deltaTime;
         CheckTime();
         _timeLimit -= Time.deltaTime;
-        // if (_timeLimit < 10 && _timeLimit >= 5 && _isAngry == false)
-        // {
-        //     goatFace.ChangeToAngrySprite(faceIndex);
-        //     _isAngry = true;
-        // }
+        if (_timeLimit < 10 && _timeLimit >= 5)
+        {
+            goatFace.ChangeToAngrySprite(faceIndex);
+        }
 
 
         if (_timeLimit < 0)

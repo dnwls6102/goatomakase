@@ -15,19 +15,20 @@ public class Board : MonoBehaviour
     public int condiment;
     public int grass;
     public bool can_add;
-    void Start()
+    private void Awake()
     {
         ingredient_list = new List<Ingredient>();
+    }
+    void Start()
+    {
+        
         plate = -1;
         condiment = -1;
         grass = -1;
+        can_add = true;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-
-    }
     public void clear_board()
     {
         for (int i = 0; i < ingredient_list.Count; i++)

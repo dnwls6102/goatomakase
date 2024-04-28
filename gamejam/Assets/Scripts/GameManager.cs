@@ -384,10 +384,7 @@ public class GameManager : MonoBehaviour
     private int orderIndex; //주문 index를 저장하는 변수
     private int reactionIndex; //리액션 index를 저장하는 변수
     private int faceIndex; //염소 얼굴 index를 저장하는 변수
-    private float reactionTime;
-    private float timer;
-    //private bool _isAngry;
-    //private bool _isVeryangry;
+
     void Awake()
     {
         gm = this;
@@ -423,8 +420,6 @@ public class GameManager : MonoBehaviour
         Answer18, Answer19, Answer20, Answer21, Answer22, Answer23 };
         goodReactionArray = new string[] { "GOAT.", "감사합니다!", "This is what I want.", "다음에 또 올게요!", "번창하세요~" };
         badReactionArray = new string[] { "아…", "맛있네요..(표정을 구기며)", "지금 이걸 저 먹으라고 주는 건가요?", "너나 먹어!", "This is not what I want." };
-        reactionTime = 1.5f;
-        timer = 0.0f;
         // reactionBallon.SetActive(false);
         //_isAngry = false;
 

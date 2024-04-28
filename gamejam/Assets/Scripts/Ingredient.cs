@@ -183,7 +183,7 @@ public class Ingredient : MonoBehaviour
                                 }*/
                 else if (hit_tray.collider != null) // 트레이에 추가안함. fail임
                 {
-                    if(state != Ingredient_state.FAILD)
+                    if( idx >=7)
                     {
                         transform.position = hit_tray.transform.position;
                         GameManager.gm._isFinished = true;

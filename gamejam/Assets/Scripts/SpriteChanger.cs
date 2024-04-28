@@ -16,6 +16,8 @@ public class SpriteChanger: MonoBehaviour
     public Sprite cooked_sprite;
     public Sprite boil_fail;
     public Sprite mixed_fail;
+    public Sprite in_boil;
+    public Sprite in_mixer;
 
     public Sprite[] spritelist;
     void Awake()
@@ -51,6 +53,15 @@ public class SpriteChanger: MonoBehaviour
     public void ChangeToMixedFail()
     {
         spriteRenderer.sprite = mixed_fail;
+    }
+
+    public void ChangeToInBoil()
+    {
+        spriteRenderer.sprite = in_boil;
+    }
+    public void ChangeToInMixed()
+    {
+        spriteRenderer.sprite = in_mixer;
     }
 
 

@@ -122,16 +122,16 @@ public class GameManager : MonoBehaviour
     };
     private clearInfo Answer4 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
     {
-        _isGrassOne = 1, //강아지풀이 필수인지 아닌지
-        _isGrassTwo = 1, //민들레가 필수인지 아닌지
-        _isGrassThree = 1, //고추가 필수인지 아닌지
+        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
+        _isGrassTwo = 0, //민들레가 필수인지 아닌지
+        _isGrassThree = 0, //고추가 필수인지 아닌지
         _isSpiceOne = 0, //간장이 필수인지 아닌지
         _isSpiceTwo = 0, //된장이 필수인지 아닌지
         _isSpiceThree = 0, //소금이 필수인지 아닌지
-        _isSpiceFour = 1, //고춧가루가 필수인지 아닌지
-        _isToolOne = 0, //냄비가 필수인지 아닌지
-        _isToolTwo = 1, //믹서기가 필수인지 아닌지
-        _isToolThree = 0, //튀김기가 필수인지 아닌지
+        _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
+        _isToolOne = -1, //냄비가 필수인지 아닌지
+        _isToolTwo = -1, //믹서기가 필수인지 아닌지
+        _isToolThree = -1, //튀김기가 필수인지 아닌지
     };
     private clearInfo Answer5 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
     {
@@ -218,7 +218,7 @@ public class GameManager : MonoBehaviour
         _isGrassThree = 1, //고추가 필수인지 아닌지
         _isSpiceOne = 0, //간장이 필수인지 아닌지
         _isSpiceTwo = 0, //된장이 필수인지 아닌지
-        _isSpiceThree = 0, //소금이 필수인지 아닌지
+        _isSpiceThree = -1, //소금이 필수인지 아닌지
         _isSpiceFour = 1, //고춧가루가 필수인지 아닌지
         _isToolOne = 0, //냄비가 필수인지 아닌지
         _isToolTwo = 0, //믹서기가 필수인지 아닌지
@@ -252,34 +252,34 @@ public class GameManager : MonoBehaviour
     };
     private clearInfo Answer14 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
     {
-        _isGrassOne = -1, //강아지풀이 필수인지 아닌지
-        _isGrassTwo = -1, //민들레가 필수인지 아닌지
-        _isGrassThree = -1, //고추가 필수인지 아닌지
-        _isSpiceOne = -1, //간장이 필수인지 아닌지
-        _isSpiceTwo = 1, //된장이 필수인지 아닌지
-        _isSpiceThree = -1, //소금이 필수인지 아닌지
-        _isSpiceFour = -1, //고춧가루가 필수인지 아닌지
-        _isToolOne = -1, //냄비가 필수인지 아닌지
-        _isToolTwo = -1, //믹서기가 필수인지 아닌지
-        _isToolThree = -1, //튀김기가 필수인지 아닌지
-    };
-    private clearInfo Answer15 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
-    {
         _isGrassOne = 0, //강아지풀이 필수인지 아닌지
-        _isGrassTwo = 1, //민들레가 필수인지 아닌지
+        _isGrassTwo = 0, //민들레가 필수인지 아닌지
         _isGrassThree = 0, //고추가 필수인지 아닌지
         _isSpiceOne = -1, //간장이 필수인지 아닌지
         _isSpiceTwo = -1, //된장이 필수인지 아닌지
         _isSpiceThree = -1, //소금이 필수인지 아닌지
         _isSpiceFour = -1, //고춧가루가 필수인지 아닌지
         _isToolOne = -1, //냄비가 필수인지 아닌지
-        _isToolTwo = -1, //믹서기가 필수인지 아닌지
+        _isToolTwo = 1, //믹서기가 필수인지 아닌지
         _isToolThree = -1, //튀김기가 필수인지 아닌지
+    };
+    private clearInfo Answer15 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
+    {
+        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
+        _isGrassTwo = 0, //민들레가 필수인지 아닌지
+        _isGrassThree = 0, //고추가 필수인지 아닌지
+        _isSpiceOne = -1, //간장이 필수인지 아닌지
+        _isSpiceTwo = 1, //된장이 필수인지 아닌지
+        _isSpiceThree = -1, //소금이 필수인지 아닌지
+        _isSpiceFour = -1, //고춧가루가 필수인지 아닌지
+        _isToolOne = 0, //냄비가 필수인지 아닌지
+        _isToolTwo = 0, //믹서기가 필수인지 아닌지
+        _isToolThree = 0, //튀김기가 필수인지 아닌지
     };
     private clearInfo Answer16 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
     {
         _isGrassOne = 0, //강아지풀이 필수인지 아닌지
-        _isGrassTwo = 0, //민들레가 필수인지 아닌지
+        _isGrassTwo = 1, //민들레가 필수인지 아닌지
         _isGrassThree = 0, //고추가 필수인지 아닌지
         _isSpiceOne = 0, //간장이 필수인지 아닌지
         _isSpiceTwo = 0, //된장이 필수인지 아닌지
@@ -294,13 +294,13 @@ public class GameManager : MonoBehaviour
         _isGrassOne = 0, //강아지풀이 필수인지 아닌지
         _isGrassTwo = 0, //민들레가 필수인지 아닌지
         _isGrassThree = 0, //고추가 필수인지 아닌지
-        _isSpiceOne = 1, //간장이 필수인지 아닌지
+        _isSpiceOne = 0, //간장이 필수인지 아닌지
         _isSpiceTwo = 0, //된장이 필수인지 아닌지
         _isSpiceThree = 0, //소금이 필수인지 아닌지
         _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
-        _isToolOne = 1, //냄비가 필수인지 아닌지
-        _isToolTwo = 0, //믹서기가 필수인지 아닌지
-        _isToolThree = 0, //튀김기가 필수인지 아닌지
+        _isToolOne = -1, //냄비가 필수인지 아닌지
+        _isToolTwo = -1, //믹서기가 필수인지 아닌지
+        _isToolThree = -1, //튀김기가 필수인지 아닌지
     };
     private clearInfo Answer18 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
     {
@@ -317,16 +317,16 @@ public class GameManager : MonoBehaviour
     };
     private clearInfo Answer19 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
     {
-        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
-        _isGrassTwo = 1, //민들레가 필수인지 아닌지
-        _isGrassThree = 0, //고추가 필수인지 아닌지
+        _isGrassOne = 1, //강아지풀이 필수인지 아닌지
+        _isGrassTwo = 0, //민들레가 필수인지 아닌지
+        _isGrassThree = -1, //고추가 필수인지 아닌지
         _isSpiceOne = 0, //간장이 필수인지 아닌지
-        _isSpiceTwo = 0, //된장이 필수인지 아닌지
-        _isSpiceThree = 0, //소금이 필수인지 아닌지
+        _isSpiceTwo = -1, //된장이 필수인지 아닌지
+        _isSpiceThree = -1, //소금이 필수인지 아닌지
         _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
-        _isToolOne = 0, //냄비가 필수인지 아닌지
-        _isToolTwo = 0, //믹서기가 필수인지 아닌지
-        _isToolThree = 0, //튀김기가 필수인지 아닌지
+        _isToolOne = 1, //냄비가 필수인지 아닌지
+        _isToolTwo = -1, //믹서기가 필수인지 아닌지
+        _isToolThree = -1, //튀김기가 필수인지 아닌지
     };
     private clearInfo Answer20 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
     {
@@ -362,12 +362,25 @@ public class GameManager : MonoBehaviour
         _isSpiceOne = 0, //간장이 필수인지 아닌지
         _isSpiceTwo = 0, //된장이 필수인지 아닌지
         _isSpiceThree = 0, //소금이 필수인지 아닌지
-        _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
+        _isSpiceFour = 1, //고춧가루가 필수인지 아닌지
         _isToolOne = 0, //냄비가 필수인지 아닌지
-        _isToolTwo = 0, //믹서기가 필수인지 아닌지
+        _isToolTwo = -1, //믹서기가 필수인지 아닌지
         _isToolThree = 0, //튀김기가 필수인지 아닌지
     };
     private clearInfo Answer23 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
+    {
+        _isGrassOne = 0, //강아지풀이 필수인지 아닌지
+        _isGrassTwo = 0, //민들레가 필수인지 아닌지
+        _isGrassThree = 0, //고추가 필수인지 아닌지
+        _isSpiceOne = 0, //간장이 필수인지 아닌지
+        _isSpiceTwo = 0, //된장이 필수인지 아닌지
+        _isSpiceThree = 0, //소금이 필수인지 아닌지
+        _isSpiceFour = 0, //고춧가루가 필수인지 아닌지
+        _isToolOne = 1, //냄비가 필수인지 아닌지
+        _isToolTwo = -1, //믹서기가 필수인지 아닌지
+        _isToolThree = -1, //튀김기가 필수인지 아닌지
+    };
+    private clearInfo Answer24 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
     {
         _isGrassOne = 0, //강아지풀이 필수인지 아닌지
         _isGrassTwo = 0, //민들레가 필수인지 아닌지
@@ -380,7 +393,7 @@ public class GameManager : MonoBehaviour
         _isToolTwo = 0, //믹서기가 필수인지 아닌지
         _isToolThree = 0, //튀김기가 필수인지 아닌지
     };
-    private clearInfo Answer24 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
+    private clearInfo Answer25 = new clearInfo() //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
     {
         _isGrassOne = 0, //강아지풀이 필수인지 아닌지
         _isGrassTwo = 1, //민들레가 필수인지 아닌지
@@ -403,31 +416,31 @@ public class GameManager : MonoBehaviour
         gm = this;
         MaxTime = GameTime;
         orderArray = new string[] {
-            "안녕하세요, 샐러드 하나 주세요! 소스는 필요없어요.", //0번
-             "저 오늘 다이어트 해야해요 완전 스트레스 받네.. 좀 화끈한 거 없어요?", //1번
-             "날이 좀 으슬으슬하네.. 구수한 국수 하나 주세요.", //2번...
-             "모든 걸 파괴해야 해요. 모든 걸, 화끈하게...",
-             "간장 국수 하나 주세요.",
-             "고양이들은 아무것도 몰라.",
-             "전 클래식은 이제 질렸어요. 씁쓸한 스무디 한 잔이요, 근데 좀 다크하게 해주세요.",
-             "할머니의 손맛이 그리워요…", //7번
-             "예쁘고 바삭한 거 있나요? 그리고 최대한 심플하게요!",
-             "노랗고..하얗고..짭짤한 거..",
-             "혹시 사랑니 빼보셨어요? 진짜 아프네… 아 맵고 뜨겁고 자극적이지 않은 걸로 주세요.",
-             "저 송지원인데요, 늘 먹던 걸로 주세요.", //11번,
-             "Is there something salty and sweet? And also crispy, but without dark, you know what I am saying?",
-             "그린 스무디 한 잔 주세요.",
-             "구수하기만 하게 하면 돼요.",
-             "蒲公英.", //15번
-             "샐러드를 좋아하나봐?",
-             "지옥은 어둡고 뜨겁겠지..",
-             "원숭이 엉덩이는?",
-             "겨울에도 널 볼수만 있다면..",
-             "씁쓸하고 매콤한데 또 따뜻하게 주세요.",
-             "핫도그 하나요!",//21번,
-             "내가 만든 퍼즐은 늘 달콤하니까.",
-             "Whatever you want.",
-             "국화과의 여러해살이풀. 원줄기는 없고 이른 봄에 뿌리에서 깃 모양으로 깊이 갈라진 잎이 배게 난다.",
+            "안녕하세요, 샐러드 하나 주세요! 소스는 필요없어요.", //1번
+             "저 오늘 다이어트 해야해요 완전 스트레스 받네.. 좀 화끈한 거 없어요?", //2번
+             "날이 좀 으슬으슬하네.. 구수한 국수 하나 주세요.", //3번...
+             "음메에에", //4번
+             "간장 국수 하나 주세요.", //5번
+             "고양이들은 아무것도 몰라.", //6번
+             "전 클래식은 이제 질렸어요. 씁쓸한 스무디 한 잔이요, 근데 좀 다크하게 해주세요.", //7번
+             "할머니의 손맛이 그리워요…", //8번
+             "예쁘고 바삭한 거 있나요? 그리고 최대한 심플하게요!", //9번
+             "노랗고..하얗고..짭짤한 거..", //10번
+             "혹시 사랑니 빼보셨어요? 진짜 아프네… 아 맵고 뜨겁고 자극적이지 않은 걸로 주세요.", //11번
+             "저 송지원인데요, 늘 먹던 걸로 주세요.", //12번,
+             "Is there something salty and sweet? And also crispy, but without dark, you know what I am saying?",//13번
+             "그린 스무디 한 잔 주세요.", //14번
+             "구수하기만 하게 하면 돼요.", //15번
+             "蒲公英.", //16번
+             "샐러드를 좋아하나봐?", //17번
+             "지옥은 어둡고 뜨겁겠지..", //18번
+             "저는 고추, 된장, 소금 알레르기가 있습니다. 그런데 고춧가루는 곧잘 먹습니다. 강아지풀을 푹 고아서 주세요.", //19번
+             "된장 넣지말고 소금 넣지말고 고추 넣지말고 강아지풀 넣고 푹 끓여", //20번
+             "핫도그 하나요!", //21번
+             "씁쓸하고 매콤한데 또 따뜻하게 주세요.",//22번,
+             "이모 여기 해장국 한그릇 갖다주이소", //23번
+             "Whatever you want.", //24번
+             "국화과의 여러해살이풀. 원줄기는 없고 이른 봄에 뿌리에서 깃 모양으로 깊이 갈라진 잎이 배게 난다.", //25번
               };
         answerArray = new List<clearInfo>() { Answer1, Answer2, Answer3, Answer4, Answer5, Answer6,
         Answer7, Answer8, Answer9, Answer10, Answer11, Answer12, Answer13, Answer14, Answer15, Answer16, Answer17,
@@ -446,7 +459,7 @@ public class GameManager : MonoBehaviour
     {
         if (_isOrdering == false) //주문이 없는 경우 : 주문 받기
         {
-            orderIndex = Random.Range(0, 25); //어떤 주문을 할지 난수 생성 (temp = Random.Range(0, 22)) -> 1~24로 수정, answerArray 와 
+            orderIndex = Random.Range(1, 26); //어떤 주문을 할지 난수 생성 (temp = Random.Range(0, 22)) -> 1~24로 수정, answerArray 와 
             faceIndex = Random.Range(0, 5); //염소 스프라이트 추가되면 (0,5)로 수정해야함.
             _isOrdering = true;
             orderText.text = orderArray[orderIndex];

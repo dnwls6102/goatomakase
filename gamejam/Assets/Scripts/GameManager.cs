@@ -37,6 +37,10 @@ public class GameManager : MonoBehaviour
     public bool toolFlag = false; //조리기 사용 여부 판정 플래그
     public FaceChanger goatFace; //염소 얼굴 변환기 받아오기
     public int score = 0;
+    public int clear_score = 7;
+    public GameObject GameUI;
+    public GameObject GameClear;
+    public GameObject GameOver;
 
 
     public Board Doma; //도마
@@ -557,8 +561,15 @@ public class GameManager : MonoBehaviour
         if (GameTime < 0) //게임 오버 여부 : 코루틴으로 만들기(시간되면)
         {
             Debug.Log("Time Over");
-            Time.timeScale = 0f;
+
             Debug.Log(score);
+
+            GameUI.SetActive(false);
+            if (score >= clear_score) {
+                GameClear.SetActive(true);
+            }
+            else
+                GameOver.SetActive(true);
         }
     }
 

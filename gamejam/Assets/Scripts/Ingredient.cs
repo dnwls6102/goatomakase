@@ -107,8 +107,7 @@ public class Ingredient : MonoBehaviour
                 ingredient.spriteRenderer.enabled = true;
                 if (hit_board.collider.gameObject.GetComponent<Board>().AddIngredient(ingredient) == false)
                 {
-                    ingredient.gameObject.SetActive(false);
-                    ingredient.transform.position = new Vector3(10, 10, 0);
+                    Destroy(ingredient.gameObject);
                     transform.position = pre_position;
                     spriteRenderer.enabled = false;
                     return;
@@ -130,7 +129,6 @@ public class Ingredient : MonoBehaviour
 
                 if (hit_cooker.collider.name == "Fryer")
                 {
-                    print(55);
                     ingredient.spriteRenderer.enabled = true;
                     ingredient.state = Ingredient_state.FRYED;
 
@@ -153,7 +151,7 @@ public class Ingredient : MonoBehaviour
         {
             if (dragable)
             {
-
+                //보드에 추가
                 if (hit_board.collider != null && !in_board)
                 {
                     in_board = true;
@@ -179,20 +177,26 @@ public class Ingredient : MonoBehaviour
                                     hit_cooker.collider.gameObject.GetComponent<Cooker>().Cook(ingredient);
                                     ingredient.dragable = false;
                                 }*/
-                else if (hit_tray.collider != null && state != Ingredient_state.FAILD)
+                else if (hit_tray.collider != null) // 트레이에 추가안함. fail임
                 {
-                    transform.position = hit_tray.transform.position;
+                    if(state != Ingredient_state.FAILD)
+                    {
+                        transform.position = hit_tray.transform.position;
+                        GameManager.gm._isFinished = true;
+                        GameManager.gm.PrintFlags();
+                    }
+                    else
+                    {
+                        transform.position = pre_position;
+                    }
+                    print(GameManager.gm._isCorrect);
+                    print(GameManager.gm._isFinished);
 
                 }
                 else if (hit_trash_can.collider != null)
                 {
                     hit_trash_can.collider.GetComponent<TrashCan>().Trashing();
 
-                }
-                else
-                {
-                    GameManager.gm._isCorrect = false;
-                    GameManager.gm._isFinished = true;
                 }
             }
 

@@ -21,6 +21,7 @@ public class TrashCan : MonoBehaviour
     }
     public void Trashing()
     {
+        print("trasing");
         board.clear_board();
     }
 }

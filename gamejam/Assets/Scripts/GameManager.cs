@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static Unity.Burst.Intrinsics.X86;
 
 struct clearInfo //-1 : 없음(넣으면 안됨) 0 : 상관없음 1 : 필요(넣어야 함)
 {
@@ -427,7 +428,7 @@ public class GameManager : MonoBehaviour
     {
         if (_isOrdering == false) //주문이 없는 경우 : 주문 받기
         {
-            orderIndex = Random.Range(0, 23); //어떤 주문을 할지 난수 생성 (temp = Random.Range(0, 22))
+            orderIndex = Random.Range(1, 24); //어떤 주문을 할지 난수 생성 (temp = Random.Range(0, 22)) -> 1~24로 수정, answerArray 와 
             faceIndex = Random.Range(0, 3); //염소 스프라이트 추가되면 (0,4)로 수정해야함.
             _isOrdering = true;
             orderText.text = orderArray[orderIndex];
@@ -439,9 +440,16 @@ public class GameManager : MonoBehaviour
         //도마 - 냄비 - 믹서기 - 튀김기 순으로 체크 -> 냄비 / 믹서기 / 튀김기 사용 여부는 각자 script에서 판정.
         if (Doma.ingredient_list.Count != 0)
         {
-            temp = Doma.ingredient_list[^1].idx;
-            Debug.Log(temp);
-            CheckIngredient(temp); //재료 플래그 함수
+            //temp = Doma.ingredient_list[^1].idx;
+            //Debug.Log(temp);
+            //CheckIngredient(temp); //재료 플래그 함수
+            //2번 index부터 조사하여 ingredient 추가하기(그릇 제외)
+            print(Doma.ingredient_list.Count);
+            for(int i=1;i<Doma.ingredient_list.Count;i++)
+            {
+                print(Doma.ingredient_list[i].idx);
+                CheckIngredient(Doma.ingredient_list[i].idx);
+            }
         }
         //장비 사용 여부는 각 조리기 Script에서 판정하기
         // if (Naembi.ingredient_list.Count != 0) //냄비의 ingredient_list에 재료가 있을 경우
@@ -474,7 +482,9 @@ public class GameManager : MonoBehaviour
         // 클리어 여부 판정
         if (_isFinished) //만약 요리를 완성했다면
         {
-            _isCorrect = CheckCorrect(orderIndex);
+            print("order index : " + orderIndex);
+            _isCorrect = CheckCorrect(orderIndex - 1); // order index -1 해서 원하는 정답 접근
+
             if (_isCorrect) //정답일 경우
             {
                 Debug.Log("정답");
@@ -622,7 +632,7 @@ public class GameManager : MonoBehaviour
                 currentSituation._isSpiceFour = 1;
                 break;
             default: //접시(=조리한 재료)가 올라올때 실행될 분기
-                Debug.Log("접시(혹은 조리한 재료)가 올라온 상태");
+                //Debug.Log("접시(혹은 조리한 재료)가 올라온 상태");
                 break;
         }
     }
@@ -649,6 +659,7 @@ public class GameManager : MonoBehaviour
         {
             if (answerArray[orderindex]._isGrassOne != 0) //0(상관없음)의 경우는 배제
             {
+                print("배제" + currentSituation._isGrassOne + answerArray[orderindex]._isGrassOne); //디버깅
                 return false;
             }
         }
@@ -656,6 +667,7 @@ public class GameManager : MonoBehaviour
         {
             if (answerArray[orderindex]._isGrassTwo != 0) //0(상관없음)의 경우는 배제
             {
+                print("배제" + currentSituation._isGrassTwo + answerArray[orderindex]._isGrassTwo);
                 return false;
             }
         }
@@ -663,6 +675,7 @@ public class GameManager : MonoBehaviour
         {
             if (answerArray[orderindex]._isGrassThree != 0) //0(상관없음)의 경우는 배제
             {
+                print("배제" + currentSituation._isGrassThree + answerArray[orderindex]._isGrassThree);
                 return false;
             }
         }
@@ -670,6 +683,7 @@ public class GameManager : MonoBehaviour
         {
             if (answerArray[orderindex]._isSpiceOne != 0) //0(상관없음)의 경우는 배제
             {
+                print("배제" + currentSituation._isSpiceOne + answerArray[orderindex]._isSpiceOne);
                 return false;
             }
         }
@@ -677,6 +691,7 @@ public class GameManager : MonoBehaviour
         {
             if (answerArray[orderindex]._isSpiceTwo != 0) //0(상관없음)의 경우는 배제
             {
+                print("배제" + currentSituation._isSpiceTwo + answerArray[orderindex]._isSpiceTwo);
                 return false;
             }
         }
@@ -684,6 +699,7 @@ public class GameManager : MonoBehaviour
         {
             if (answerArray[orderindex]._isSpiceThree != 0) //0(상관없음)의 경우는 배제
             {
+                print("배제" + currentSituation._isSpiceThree + answerArray[orderindex]._isSpiceThree);
                 return false;
             }
         }
@@ -691,6 +707,7 @@ public class GameManager : MonoBehaviour
         {
             if (answerArray[orderindex]._isSpiceFour != 0) //0(상관없음)의 경우는 배제
             {
+                print("배제" + currentSituation._isSpiceFour+ answerArray[orderindex]._isSpiceFour);
                 return false;
             }
         }
@@ -698,6 +715,7 @@ public class GameManager : MonoBehaviour
         {
             if (answerArray[orderindex]._isToolOne != 0) //0(상관없음)의 경우는 배제
             {
+                print("배제" + currentSituation._isToolOne + answerArray[orderindex]._isToolOne);
                 return false;
             }
 
@@ -706,6 +724,7 @@ public class GameManager : MonoBehaviour
         {
             if (answerArray[orderindex]._isToolTwo != 0) //0(상관없음)의 경우는 배제
             {
+                print("배제" + currentSituation._isToolTwo + answerArray[orderindex]._isToolTwo);
                 return false;
             }
         }
@@ -713,9 +732,33 @@ public class GameManager : MonoBehaviour
         {
             if (answerArray[orderindex]._isToolThree != 0) //0(상관없음)의 경우는 배제
             {
+                print("배제" + currentSituation._isToolThree + answerArray[orderindex]._isToolThree);
                 return false;
             }
         }
         return true;
     }
+
+    public void SetToolFlag(int tool1, int tool2, int tool3)
+    {
+        currentSituation._isToolOne = tool1;
+        currentSituation._isToolTwo = tool2;
+        currentSituation._isToolThree = tool3;
+    }
+
+
+    public void PrintFlags()
+    {
+        print("GrassOne: " + currentSituation._isGrassOne);
+        print("GrassTwo: " + currentSituation._isGrassTwo);
+        print("GrassThree: " + currentSituation._isGrassThree);
+        print("SpiceOne: " + currentSituation._isSpiceOne);
+        print("SpiceTwo: " + currentSituation._isSpiceTwo);
+        print("SpiceThree: " + currentSituation._isSpiceThree);
+        print("SpiceFour: " + currentSituation._isSpiceFour);
+        print("ToolOne: " + currentSituation._isToolOne);
+        print("ToolTwo: " + currentSituation._isToolTwo);
+        print("ToolThree: " + currentSituation._isToolThree);
+    }
+
 }

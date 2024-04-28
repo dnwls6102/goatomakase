@@ -68,7 +68,7 @@ public class Ingredient : MonoBehaviour
                         spriteChanger.ChangeToInBoil();
                     else
                         spriteChanger.ChangeToInMixed();
-                    transform.localScale = Vector3.one * 0.5f;
+                    transform.localScale = Vector3.one * 0.8f;
                 }
             }
         }

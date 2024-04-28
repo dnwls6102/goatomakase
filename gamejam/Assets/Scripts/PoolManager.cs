@@ -3,27 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using Unity.VisualScripting;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 
 
 public class PoolManager : MonoBehaviour
 {
-    //ÇÁ¸®ÆéµéÀ» º¸°üÇÒ º¯¼ö
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public GameObject[] prefabs;
 
-    //Ç® ´ã´çÀ» ÇÏ´Â ¸®½ºÆ®µé
+    //Ç® ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½
     public List<GameObject>[] pools;
     private void Awake()
     {
         pools = new List<GameObject>[prefabs.Length];
 
-        for(int i=0;i<pools.Length;i++)
+        for (int i = 0; i < pools.Length; i++)
         {
-            pools[i] =new List<GameObject>();
+            pools[i] = new List<GameObject>();
         }
-        
+
     }
     public void Start()
     {
@@ -32,22 +31,22 @@ public class PoolManager : MonoBehaviour
     public GameObject Get(int ID)
     {
         GameObject select = null;
-/*
+        /*
 
-        foreach (GameObject item in pools[ID])
-        {
-            if (!item.activeSelf)
-            {
-                select = item;
-                select.SetActive(true);
-                break;
-            }
-        }
-        if (select == null)
-        {*/
-            select = Instantiate(prefabs[ID], transform);
-/*            pools[ID].Add(select);
-        }*/
+                foreach (GameObject item in pools[ID])
+                {
+                    if (!item.activeSelf)
+                    {
+                        select = item;
+                        select.SetActive(true);
+                        break;
+                    }
+                }
+                if (select == null)
+                {*/
+        select = Instantiate(prefabs[ID], transform);
+        /*            pools[ID].Add(select);
+                }*/
 
         return select;
     }

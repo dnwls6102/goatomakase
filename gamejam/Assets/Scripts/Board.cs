@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class Board : MonoBehaviour
@@ -50,7 +49,7 @@ public class Board : MonoBehaviour
         if (can_add == false) return false;
 
         if (ingredient.idx < 3 && plate == -1 && grass == -1)// 도마에 아무것도없는데 음식 올릴때 fail + cant_add
-            {
+        {
             //������
             if (ingredient.state == Ingredient_state.BOILED)
             {
@@ -97,7 +96,7 @@ public class Board : MonoBehaviour
                 ingredient.transform.position = new Vector3(10, 10, 0);
                 MixGrass(grass + 3); //3������ Ƣ��
                 print("state ::::::::::::: " + ingredient_list[1].state);
-                
+
                 GameManager.gm.SetToolFlag(-1, -1, 1);
             }
             else // 그릇과 재료의 state가 맞지않은 경우 => fail + cant_add

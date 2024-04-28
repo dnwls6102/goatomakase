@@ -2904,8 +2904,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 764, y: 463}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 764, y: 401.77}
+  m_SizeDelta: {x: 160, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1386462847
 MonoBehaviour:
@@ -2920,7 +2920,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.09744547, g: 0.032796368, b: 0.103773594, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2928,11 +2928,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: ca337cadd54d5c342b4a8e7ec66ea39e, type: 3}
-    m_FontSize: 20
+    m_Font: {fileID: 12800000, guid: ea2f010812081134992aecbe47f785f5, type: 3}
+    m_FontSize: 25
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 2
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -2940,7 +2940,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: "SCORE\n  55 "
 --- !u!222 &1386462848
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4732,6 +4732,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8662697977103057339, guid: feeeb8dc306afcc4e863ac7b213701b6, type: 3}
+      propertyPath: Fail
+      value: 
+      objectReference: {fileID: 8300000, guid: e0e24b3002bb05b49bf32ee5bf5a3a03, type: 3}
+    - target: {fileID: 8662697977103057339, guid: feeeb8dc306afcc4e863ac7b213701b6, type: 3}
+      propertyPath: Fail1
+      value: 
+      objectReference: {fileID: 8300000, guid: e0e24b3002bb05b49bf32ee5bf5a3a03, type: 3}
+    - target: {fileID: 8662697977103057339, guid: feeeb8dc306afcc4e863ac7b213701b6, type: 3}
+      propertyPath: Nice1
+      value: 
+      objectReference: {fileID: 8300000, guid: 98dfa99599ba99a489fcef064701d1f1, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

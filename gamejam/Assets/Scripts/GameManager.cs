@@ -574,6 +574,7 @@ public class GameManager : MonoBehaviour
         HappyFaces[findex].SetActive(true);
         orderObj.SetActive(false);
         reactObj.SetActive(true);
+        BtnSound.instance.PlayNiceSound();
         yield return new WaitForSeconds(1.5f);
         reactObj.SetActive(false);
         orderObj.SetActive(true);
@@ -588,6 +589,7 @@ public class GameManager : MonoBehaviour
         orderObj.SetActive(false);
         reactionText.text = badReactionArray[rindex];
         reactObj.SetActive(true);
+        BtnSound.instance.PlayFailSound();
         yield return new WaitForSeconds(1.5f);
         reactObj.SetActive(false);
         orderObj.SetActive(true);

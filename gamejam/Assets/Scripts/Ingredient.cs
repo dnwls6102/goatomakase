@@ -165,6 +165,10 @@ public class Ingredient : MonoBehaviour
                     }
                     cooker.cooker_SpriteChanger.ChangeToDefualtSprite();
                     cooker.busy = false;
+                    if(cooker.GetComponent<TimerUI>() != null)
+                    {
+                        cooker.GetComponent<TimerUI>().textDefualt();
+                    }
 
                 }
                 /*                else if (hit_cooker.collider != null && !cooked && can_fry)

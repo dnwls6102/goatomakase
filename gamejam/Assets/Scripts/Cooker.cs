@@ -13,7 +13,7 @@ public class Cooker : MonoBehaviour
     // Start is called before the first frame update
     public SpriteChanger cooker_SpriteChanger;
     Ingredient current_ingredient;
-
+    
     cooker_state state;
     public int time;
 
@@ -45,7 +45,9 @@ public class Cooker : MonoBehaviour
     IEnumerator CookCorutine()
     {
         busy = true;
-
+        if(GetComponent<TimerUI>() != null) {
+            GetComponent<TimerUI>().StartTimer(time);
+        }
         current_ingredient.spriteChanger.ChangeToCookingSprite();
         if(this.name != "Fryer")
         {

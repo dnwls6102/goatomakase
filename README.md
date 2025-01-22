@@ -5,7 +5,7 @@
 <h3>게임 방법</h3>
 ![goatOmakase Howto](./gamejam/Assets/Sprites/첫화면%20UI/첫화면.png)<br>
 <h3>스크린샷</h3>
-![goatOmakase 0](./염소들%20메인.png)<br>
-![goatOmakase 1](./스샷%201.png)<br>
-![goatOmakase 2](./스샷%202.png)<br>
-![goatOmakase 3](./스샷%203.png)<br>
+![goatOmakase_0](Screenshots/염소들_메인.png)<br>
+![goatOmakase_1](Screenshots/스샷_1.png)<br>
+![goatOmakase_2](Screenshots/스샷_2.png)<br>
+![goatOmakase_3](Screenshots/스샷_3.png)<br>

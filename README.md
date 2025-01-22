@@ -12,3 +12,8 @@
 ![goatOmakase_1](Screenshots/스샷_1.png)<br>
 ![goatOmakase_2](Screenshots/스샷_2.png)<br>
 ![goatOmakase_3](Screenshots/스샷_3.png)<br>
+
+### CREDITS
+**기획** 이상
+**아트** 김예서
+**개발** 김민겸, 최우진
